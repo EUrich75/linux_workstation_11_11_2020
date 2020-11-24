@@ -1,0 +1,1677 @@
+1. Управление пользователями:
+a) создать пользователя, используя утилиту useradd;
+b) удалить пользователя, используя утилиту userdel;
+c) создать пользователя в ручном режиме.
+
+2. Управление группами:
+a) создать группу с использованием утилит и в ручном режиме;
+b) попрактиковаться в смене групп у пользователей;
+c) добавить пользователя в группу, не меняя основной;
+d) удалить пользователя из группы.
+
+3. Создать пользователя с правами суперпользователя. Сделать так, чтобы
+ sudo не требовал пароль для выполнения команд.
+
+ eurich75@eurich75-VirtualBox:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:1c:c2:b3 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.41/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 4136sec preferred_lft 4136sec
+    inet6 fe80::c8ee:ef7f:f820:b8e2/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+eurich75@eurich75-VirtualBox:~$ ls
+ eu_rca.pub    'nano file1.txt'   Видео       Изображения    'Рабочий стол'
+ lesson3        text2.txt         Документы   Музыка          Шаблоны
+ lesson3_copy  'vim file1.txt'    Загрузки    Общедоступные
+eurich75@eurich75-VirtualBox:~$ cat eu_rca.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzpbXvv3K4NlU/O5EyzAT/Do6ob7GeFJ28ScaD33X5mKyfww1EyEt5PeJ99I0TmfeofGQflJu58+puo6KM2cFjBJykRw7Jz5OzWPRTDwUNkPRyJ6sq326PbpA+uq17HXNoKSQ9CtF+Kk0lZDjXrElz97QjvSmmve4AjPgLQlMr4GBq5kxfZfbH3KBiU352S8X0k7Uk6aY/hXaN/UPDkuT1M0LPsJaVTDKjIiXWCdUyEltVFHRtATv/ANhoUjTCmueZF5jvTuvNZFfp9xm3M0O0D3zr89qpEwne1WjwSxakBalMK9Z2ulPKYVCJNVdgZlq1MqCsrMWrZQ+d54tvNwJn user@DESKTOP-ALD8EQ1
+eurich75@eurich75-VirtualBox:~$ ls .ssh
+ls: невозможно получить доступ к '.ssh': Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~$ mkdir .ssh
+eurich75@eurich75-VirtualBox:~$ ls .ssh
+eurich75@eurich75-VirtualBox:~$ ls .ssh/
+eurich75@eurich75-VirtualBox:~$ cat eu_rca.pub >> .ssh/authorized_keys
+eurich75@eurich75-VirtualBox:~$ cat .ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzpbXvv3K4NlU/O5EyzAT/Do6ob7GeFJ28ScaD33X5mKyfww1EyEt5PeJ99I0TmfeofGQflJu58+puo6KM2cFjBJykRw7Jz5OzWPRTDwUNkPRyJ6sq326PbpA+uq17HXNoKSQ9CtF+Kk0lZDjXrElz97QjvSmmve4AjPgLQlMr4GBq5kxfZfbH3KBiU352S8X0k7Uk6aY/hXaN/UPDkuT1M0LPsJaVTDKjIiXWCdUyEltVFHRtATv/ANhoUjTCmueZF5jvTuvNZFfp9xm3M0O0D3zr89qpEwne1WjwSxakBalMK9Z2ulPKYVCJNVdgZlq1MqCsrMWrZQ+d54tvNwJn user@DESKTOP-ALD8EQ1
+eurich75@eurich75-VirtualBox:~$ sudo systemctl status sshd
+[sudo] пароль для eurich75:
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: >
+     Active: active (running) since Tue 2020-11-24 17:30:45 +08; 20min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 574 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 595 (sshd)
+      Tasks: 1 (limit: 2318)
+     Memory: 2.8M
+     CGroup: /system.slice/ssh.service
+             └─595 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+ноя 24 17:30:41 eurich75-VirtualBox systemd[1]: Starting OpenBSD Secure Shell >
+ноя 24 17:30:45 eurich75-VirtualBox sshd[595]: Server listening on 0.0.0.0 por>
+ноя 24 17:30:45 eurich75-VirtualBox sshd[595]: Server listening on :: port 22.
+ноя 24 17:30:45 eurich75-VirtualBox systemd[1]: Started OpenBSD Secure Shell s>
+ноя 24 17:43:40 eurich75-VirtualBox sshd[1721]: Accepted password for eurich75>
+ноя 24 17:43:40 eurich75-VirtualBox sshd[1721]: pam_unix(sshd:session): sessio>
+ноя 24 17:43:41 eurich75-VirtualBox sshd[1721]: pam_unix(sshd:session): sessio>
+ноя 24 17:44:37 eurich75-VirtualBox sshd[1836]: Accepted password for eurich75>
+ноя 24 17:44:37 eurich75-VirtualBox sshd[1836]: pam_unix(sshd:session): sessio>
+ноя 24 17:44:38 eurich75-VirtualBox sshd[1836]: pam_unix(sshd:session): sessio>
+eurich75@eurich75-VirtualBox:~$ sudo nano  /etc/ssh/sshd_config
+eurich75@eurich75-VirtualBox:~$ sudo nano  /etc/ssh/sshd_config
+eurich75@eurich75-VirtualBox:~$ sudo systemctl restart sshd
+eurich75@eurich75-VirtualBox:~$
+
+
+Microsoft Windows [Version 10.0.18363.1198]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+C:\Users\user>ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\user/.ssh/id_rsa): eu_rca
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in eu_rca.
+Your public key has been saved in eu_rca.pub.
+The key fingerprint is:
+SHA256:tjLN2w8n/H3DtcnbK1ybNWO8vyef+hSZhBtNyaxp1m8 user@DESKTOP-ALD8EQ1
+The key's randomart image is:
++---[RSA 2048]----+
+|              o..|
+|              ++ |
+|             o+o |
+|             =+.o|
+|        S   o..+.|
+|       + o     *E|
+|      o + + o =o@|
+|       o o = +oX=|
+|        . ..o.=X@|
++----[SHA256]-----+
+
+C:\Users\user>scp eu_rsa.pub eurich75@192.168.1.41:
+eurich75@192.168.1.41's password:
+eu_rsa.pub: No such file or directory
+
+C:\Users\user>scp eu_rca.pub eurich75@192.168.1.41:
+eurich75@192.168.1.41's password:
+eu_rca.pub                                                                            100%  403    23.7KB/s   00:00
+
+C:\Users\user>ssh -i eu_rca eurich75@192.168.1.41
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+5 обновлений могут быть установлены прямо сейчас.
+0 из этих обновлений, являются обновлениями безопасности.
+Чтобы просмотреть дополнительные обновления выполните: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+Last login: Mon Nov 23 17:32:29 2020 from 192.168.1.39
+eurich75@eurich75-VirtualBox:~$ id
+uid=1000(eurich75) gid=1000(eurich75) группы=1000(eurich75),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),120(lpadmin),131(lxd),132(sambashare)
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+eurich75@eurich75-VirtualBox:~$ cat /etc/shadow
+cat: /etc/shadow: Отказано в доступе
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/shadow
+[sudo] пароль для eurich75:
+sudo: ccat: команда не найдена
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/shadow
+root:!:18583:0:99999:7:::
+daemon:*:18474:0:99999:7:::
+bin:*:18474:0:99999:7:::
+sys:*:18474:0:99999:7:::
+sync:*:18474:0:99999:7:::
+games:*:18474:0:99999:7:::
+man:*:18474:0:99999:7:::
+lp:*:18474:0:99999:7:::
+mail:*:18474:0:99999:7:::
+news:*:18474:0:99999:7:::
+uucp:*:18474:0:99999:7:::
+proxy:*:18474:0:99999:7:::
+www-data:*:18474:0:99999:7:::
+backup:*:18474:0:99999:7:::
+list:*:18474:0:99999:7:::
+irc:*:18474:0:99999:7:::
+gnats:*:18474:0:99999:7:::
+nobody:*:18474:0:99999:7:::
+systemd-network:*:18474:0:99999:7:::
+systemd-resolve:*:18474:0:99999:7:::
+systemd-timesync:*:18474:0:99999:7:::
+messagebus:*:18474:0:99999:7:::
+syslog:*:18474:0:99999:7:::
+_apt:*:18474:0:99999:7:::
+tss:*:18474:0:99999:7:::
+uuidd:*:18474:0:99999:7:::
+tcpdump:*:18474:0:99999:7:::
+avahi-autoipd:*:18474:0:99999:7:::
+usbmux:*:18474:0:99999:7:::
+rtkit:*:18474:0:99999:7:::
+dnsmasq:*:18474:0:99999:7:::
+cups-pk-helper:*:18474:0:99999:7:::
+speech-dispatcher:!:18474:0:99999:7:::
+avahi:*:18474:0:99999:7:::
+kernoops:*:18474:0:99999:7:::
+saned:*:18474:0:99999:7:::
+nm-openvpn:*:18474:0:99999:7:::
+hplip:*:18474:0:99999:7:::
+whoopsie:*:18474:0:99999:7:::
+colord:*:18474:0:99999:7:::
+geoclue:*:18474:0:99999:7:::
+pulse:*:18474:0:99999:7:::
+gnome-initial-setup:*:18474:0:99999:7:::
+gdm:*:18474:0:99999:7:::
+eurich75:$6$gwWOY4qZ9EPGYKtJ$7/Tpo/MYrKRxM1n5TWtSI9cE8.ZoGUe1lTMzawESWy4d8SZ1C3YcyKcngi1oo8rVtQrhRopZ5Js.Jcp5oNGmT/:18583:0:99999:7:::
+systemd-coredump:!!:18583::::::
+vboxadd:!:18583::::::
+sshd:*:18583:0:99999:7:::
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ sudo useradd -m -s /bin/bash -d /home/user1 -m user1
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+user1:x:1001:1001::/home/user1:/bin/bash
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/shadow
+root:!:18583:0:99999:7:::
+daemon:*:18474:0:99999:7:::
+bin:*:18474:0:99999:7:::
+sys:*:18474:0:99999:7:::
+sync:*:18474:0:99999:7:::
+games:*:18474:0:99999:7:::
+man:*:18474:0:99999:7:::
+lp:*:18474:0:99999:7:::
+mail:*:18474:0:99999:7:::
+news:*:18474:0:99999:7:::
+uucp:*:18474:0:99999:7:::
+proxy:*:18474:0:99999:7:::
+www-data:*:18474:0:99999:7:::
+backup:*:18474:0:99999:7:::
+list:*:18474:0:99999:7:::
+irc:*:18474:0:99999:7:::
+gnats:*:18474:0:99999:7:::
+nobody:*:18474:0:99999:7:::
+systemd-network:*:18474:0:99999:7:::
+systemd-resolve:*:18474:0:99999:7:::
+systemd-timesync:*:18474:0:99999:7:::
+messagebus:*:18474:0:99999:7:::
+syslog:*:18474:0:99999:7:::
+_apt:*:18474:0:99999:7:::
+tss:*:18474:0:99999:7:::
+uuidd:*:18474:0:99999:7:::
+tcpdump:*:18474:0:99999:7:::
+avahi-autoipd:*:18474:0:99999:7:::
+usbmux:*:18474:0:99999:7:::
+rtkit:*:18474:0:99999:7:::
+dnsmasq:*:18474:0:99999:7:::
+cups-pk-helper:*:18474:0:99999:7:::
+speech-dispatcher:!:18474:0:99999:7:::
+avahi:*:18474:0:99999:7:::
+kernoops:*:18474:0:99999:7:::
+saned:*:18474:0:99999:7:::
+nm-openvpn:*:18474:0:99999:7:::
+hplip:*:18474:0:99999:7:::
+whoopsie:*:18474:0:99999:7:::
+colord:*:18474:0:99999:7:::
+geoclue:*:18474:0:99999:7:::
+pulse:*:18474:0:99999:7:::
+gnome-initial-setup:*:18474:0:99999:7:::
+gdm:*:18474:0:99999:7:::
+eurich75:$6$gwWOY4qZ9EPGYKtJ$7/Tpo/MYrKRxM1n5TWtSI9cE8.ZoGUe1lTMzawESWy4d8SZ1C3YcyKcngi1oo8rVtQrhRopZ5Js.Jcp5oNGmT/:18583:0:99999:7:::
+systemd-coredump:!!:18583::::::
+vboxadd:!:18583::::::
+sshd:*:18583:0:99999:7:::
+user1:!:18590:0:99999:7:::
+eurich75@eurich75-VirtualBox:~$ man useradd
+eurich75@eurich75-VirtualBox:~$ eurich75@eurich75-VirtualBox:~$ useradd -help
+Использование: useradd [параметры] ПОЛЬЗОВАТЕЛЬ
+               useradd -D
+               useradd -D [параметры]
+
+Параметры:
+      --badnames                do not check for bad names
+  -b, --base-dir БАЗ_КАТ        базовый каталог для домашнего каталога новой
+                                учётной записи
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment КОММЕНТАРИЙ     поле GECOS новой учётной записи
+  -d, --home-dir ДОМ_КАТ        домашний каталог новой учётной записи
+  -D, --defaults                показать или изменить настройки
+                                по умолчанию для useradd
+  -e, --expiredate ДАТА_УСТ     дата устаревания новой учётной записи
+  -f, --inactive НЕАКТИВНОСТЬ   период неактивности пароля новой учётной записи
+  -g, --gid ГРУППА              имя или ID первичной группы новой
+                                учётной записи
+  -G, --groups ГРУППЫ           список дополнительных групп новой
+                                учётной записи
+  -h, --help                    показать данное сообщение и закончить работу
+  -k, --skel КАБ_ШАБ            использовать альтернативный каталог с шаблонами
+  -K, --key КЛЮЧ=ЗНАЧЕНИЕ       заменить значение по умолчанию
+                                из /etc/login.defs
+  -l, --no-log-init             не добавлять пользователя в базы данных lastlog и
+                                faillog
+  -m, --create-home             создать домашний каталог пользователя
+  -M, --no-create-home          не создавать домашний каталог пользователя
+  -N, --no-user-group           не создавать группу с тем же именем что и у
+                                пользователя
+  -o, --non-unique              разрешить создание пользователей с
+                                повторяющимися (не уникальными) UID
+  -p, --password ПАРОЛЬ         зашифрованный пароль новой учётной записи
+  -r, --system                  создавать системную группу
+  -R, --root КАТ_CHROOT         каталог, в который выполняется chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell ОБОЛОЧКА          регистрационная оболочка новой
+                                учётной записи
+  -u, --uid UID                 пользовательский ID новой учётной записи
+  -U, --user-group              создать группу с тем же именем что и у
+                                пользователя
+  -Z, --selinux-user SEUSER     использовать указанного SEUSER для
+                                пользовательского сопоставления SELinux
+      --extrausers              Use the extra users database
+
+eurich75@eurich75-VirtualBox:~$ ls /home/
+eurich75  user1
+eurich75@eurich75-VirtualBox:~$ sudo adduser user2
+Добавляется пользователь «user2» ...
+Добавляется новая группа «user2» (1002) ...
+Добавляется новый пользователь «user2» (1002) в группу «user2» ...
+Создаётся домашний каталог «/home/user2» ...
+Копирование файлов из «/etc/skel» ...
+Новый пароль :
+Повторите ввод нового пароля :
+passwd: пароль успешно обновлён
+Изменение информации о пользователе user2
+Введите новое значение или нажмите ENTER для выбора значения по умолчанию
+        Полное имя []:
+        Номер комнаты []:
+        Рабочий телефон []:
+        Домашний телефон []:
+        Другое []:
+Данная информация корректна? [Y/n] y
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+user1:x:1001:1001::/home/user1:/bin/bash
+user2:x:1002:1002:,,,:/home/user2:/bin/bash
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/shadow
+root:!:18583:0:99999:7:::
+daemon:*:18474:0:99999:7:::
+bin:*:18474:0:99999:7:::
+sys:*:18474:0:99999:7:::
+sync:*:18474:0:99999:7:::
+games:*:18474:0:99999:7:::
+man:*:18474:0:99999:7:::
+lp:*:18474:0:99999:7:::
+mail:*:18474:0:99999:7:::
+news:*:18474:0:99999:7:::
+uucp:*:18474:0:99999:7:::
+proxy:*:18474:0:99999:7:::
+www-data:*:18474:0:99999:7:::
+backup:*:18474:0:99999:7:::
+list:*:18474:0:99999:7:::
+irc:*:18474:0:99999:7:::
+gnats:*:18474:0:99999:7:::
+nobody:*:18474:0:99999:7:::
+systemd-network:*:18474:0:99999:7:::
+systemd-resolve:*:18474:0:99999:7:::
+systemd-timesync:*:18474:0:99999:7:::
+messagebus:*:18474:0:99999:7:::
+syslog:*:18474:0:99999:7:::
+_apt:*:18474:0:99999:7:::
+tss:*:18474:0:99999:7:::
+uuidd:*:18474:0:99999:7:::
+tcpdump:*:18474:0:99999:7:::
+avahi-autoipd:*:18474:0:99999:7:::
+usbmux:*:18474:0:99999:7:::
+rtkit:*:18474:0:99999:7:::
+dnsmasq:*:18474:0:99999:7:::
+cups-pk-helper:*:18474:0:99999:7:::
+speech-dispatcher:!:18474:0:99999:7:::
+avahi:*:18474:0:99999:7:::
+kernoops:*:18474:0:99999:7:::
+saned:*:18474:0:99999:7:::
+nm-openvpn:*:18474:0:99999:7:::
+hplip:*:18474:0:99999:7:::
+whoopsie:*:18474:0:99999:7:::
+colord:*:18474:0:99999:7:::
+geoclue:*:18474:0:99999:7:::
+pulse:*:18474:0:99999:7:::
+gnome-initial-setup:*:18474:0:99999:7:::
+gdm:*:18474:0:99999:7:::
+eurich75:$6$gwWOY4qZ9EPGYKtJ$7/Tpo/MYrKRxM1n5TWtSI9cE8.ZoGUe1lTMzawESWy4d8SZ1C3YcyKcngi1oo8rVtQrhRopZ5Js.Jcp5oNGmT/:18583:0:99999:7:::
+systemd-coredump:!!:18583::::::
+vboxadd:!:18583::::::
+sshd:*:18583:0:99999:7:::
+user1:!:18590:0:99999:7:::
+user2:$6$hGbcL/XToiOERz2t$cFo0oHBvW4T69l29JKsrfXZ6SCRBlWHrcFUVEYVO6wDtj68V2F.hp0nHzryeqV4AyveEGq5SpFfccinNWIozW1:18590:0:99999:7:::
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ sudo groupadd team1
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+user2:x:1002:
+team1:x:1003:
+eurich75@eurich75-VirtualBox:~$ sudo addgroup team2
+Добавляется группа «team2» (GID 1004) ...
+Готово.
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+user2:x:1002:
+team1:x:1003:
+team2:x:1004:
+eurich75@eurich75-VirtualBox:~$ sudo passwd user1
+Новый пароль :
+Повторите ввод нового пароля :
+Извините, но пароли не совпадают.
+passwd: Ошибка при операциях с маркером проверки подлинности
+passwd: пароль не изменён
+eurich75@eurich75-VirtualBox:~$ sudo passwd user1
+Новый пароль :
+Повторите ввод нового пароля :
+passwd: пароль успешно обновлён
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+user1:x:1001:1001::/home/user1:/bin/bash
+user2:x:1002:1002:,,,:/home/user2:/bin/bash
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/shadow
+root:!:18583:0:99999:7:::
+daemon:*:18474:0:99999:7:::
+bin:*:18474:0:99999:7:::
+sys:*:18474:0:99999:7:::
+sync:*:18474:0:99999:7:::
+games:*:18474:0:99999:7:::
+man:*:18474:0:99999:7:::
+lp:*:18474:0:99999:7:::
+mail:*:18474:0:99999:7:::
+news:*:18474:0:99999:7:::
+uucp:*:18474:0:99999:7:::
+proxy:*:18474:0:99999:7:::
+www-data:*:18474:0:99999:7:::
+backup:*:18474:0:99999:7:::
+list:*:18474:0:99999:7:::
+irc:*:18474:0:99999:7:::
+gnats:*:18474:0:99999:7:::
+nobody:*:18474:0:99999:7:::
+systemd-network:*:18474:0:99999:7:::
+systemd-resolve:*:18474:0:99999:7:::
+systemd-timesync:*:18474:0:99999:7:::
+messagebus:*:18474:0:99999:7:::
+syslog:*:18474:0:99999:7:::
+_apt:*:18474:0:99999:7:::
+tss:*:18474:0:99999:7:::
+uuidd:*:18474:0:99999:7:::
+tcpdump:*:18474:0:99999:7:::
+avahi-autoipd:*:18474:0:99999:7:::
+usbmux:*:18474:0:99999:7:::
+rtkit:*:18474:0:99999:7:::
+dnsmasq:*:18474:0:99999:7:::
+cups-pk-helper:*:18474:0:99999:7:::
+speech-dispatcher:!:18474:0:99999:7:::
+avahi:*:18474:0:99999:7:::
+kernoops:*:18474:0:99999:7:::
+saned:*:18474:0:99999:7:::
+nm-openvpn:*:18474:0:99999:7:::
+hplip:*:18474:0:99999:7:::
+whoopsie:*:18474:0:99999:7:::
+colord:*:18474:0:99999:7:::
+geoclue:*:18474:0:99999:7:::
+pulse:*:18474:0:99999:7:::
+gnome-initial-setup:*:18474:0:99999:7:::
+gdm:*:18474:0:99999:7:::
+eurich75:$6$gwWOY4qZ9EPGYKtJ$7/Tpo/MYrKRxM1n5TWtSI9cE8.ZoGUe1lTMzawESWy4d8SZ1C3YcyKcngi1oo8rVtQrhRopZ5Js.Jcp5oNGmT/:18583:0:99999:7:::
+systemd-coredump:!!:18583::::::
+vboxadd:!:18583::::::
+sshd:*:18583:0:99999:7:::
+user1:$6$..dtflkKrE/A2Lju$uiz7k.sjhmG5zWGbn1QhDkgELbk0pahJCruZebxPwjMP0TxneH4hDp8Ajqd8XSXGa1CpkOWIkucXqE3oK2j8S/:18590:0:99999:7:::
+user2:$6$hGbcL/XToiOERz2t$cFo0oHBvW4T69l29JKsrfXZ6SCRBlWHrcFUVEYVO6wDtj68V2F.hp0nHzryeqV4AyveEGq5SpFfccinNWIozW1:18590:0:99999:7:::
+eurich75@eurich75-VirtualBox:~$ history
+    1  ip a
+    2  sudo apt update
+    3  sudo apt upgrade
+    4  sudo apt install gss make pearl
+    5  sudo apt install gcc make perl
+    6  reboot
+    7  ip a
+    8  ls
+    9  ls .ssh
+   10  ls .ssh/
+   11  cat eu_rsa.pub>>.ssh/authorized_keys
+   12  id
+   13  cat /etc/passwd
+   14  cat /etc/group
+   15  cat /etc/shadow
+   16  sudo ccat /etc/shadow
+   17  sudo cat /etc/shadow
+   18  sudo useradd -m -s /bin/bash -d /home/user1 -m user1
+   19  cat /etc/passwd
+   20  cat /etc/group
+   21  sudo cat /etc/shadow
+   22  man useradd
+   23  useradd -help
+   24  ls /home/
+   25  sudo adduser user2
+   26  cat /etc/passwd
+   27  sudo cat /etc/shadow
+   28  sudo groupadd team1
+   29  cat /etc/group
+   30  sudo addgroup team2
+   31  cat /etc/group
+   32  sudo passwd user1
+   33  cat /etc/passwd
+   34  sudo cat /etc/shadow
+   35  hystory
+   36  history
+eurich75@eurich75-VirtualBox:~$ !27
+sudo cat /etc/shadow
+root:!:18583:0:99999:7:::
+daemon:*:18474:0:99999:7:::
+bin:*:18474:0:99999:7:::
+sys:*:18474:0:99999:7:::
+sync:*:18474:0:99999:7:::
+games:*:18474:0:99999:7:::
+man:*:18474:0:99999:7:::
+lp:*:18474:0:99999:7:::
+mail:*:18474:0:99999:7:::
+news:*:18474:0:99999:7:::
+uucp:*:18474:0:99999:7:::
+proxy:*:18474:0:99999:7:::
+www-data:*:18474:0:99999:7:::
+backup:*:18474:0:99999:7:::
+list:*:18474:0:99999:7:::
+irc:*:18474:0:99999:7:::
+gnats:*:18474:0:99999:7:::
+nobody:*:18474:0:99999:7:::
+systemd-network:*:18474:0:99999:7:::
+systemd-resolve:*:18474:0:99999:7:::
+systemd-timesync:*:18474:0:99999:7:::
+messagebus:*:18474:0:99999:7:::
+syslog:*:18474:0:99999:7:::
+_apt:*:18474:0:99999:7:::
+tss:*:18474:0:99999:7:::
+uuidd:*:18474:0:99999:7:::
+tcpdump:*:18474:0:99999:7:::
+avahi-autoipd:*:18474:0:99999:7:::
+usbmux:*:18474:0:99999:7:::
+rtkit:*:18474:0:99999:7:::
+dnsmasq:*:18474:0:99999:7:::
+cups-pk-helper:*:18474:0:99999:7:::
+speech-dispatcher:!:18474:0:99999:7:::
+avahi:*:18474:0:99999:7:::
+kernoops:*:18474:0:99999:7:::
+saned:*:18474:0:99999:7:::
+nm-openvpn:*:18474:0:99999:7:::
+hplip:*:18474:0:99999:7:::
+whoopsie:*:18474:0:99999:7:::
+colord:*:18474:0:99999:7:::
+geoclue:*:18474:0:99999:7:::
+pulse:*:18474:0:99999:7:::
+gnome-initial-setup:*:18474:0:99999:7:::
+gdm:*:18474:0:99999:7:::
+eurich75:$6$gwWOY4qZ9EPGYKtJ$7/Tpo/MYrKRxM1n5TWtSI9cE8.ZoGUe1lTMzawESWy4d8SZ1C3YcyKcngi1oo8rVtQrhRopZ5Js.Jcp5oNGmT/:18583:0:99999:7:::
+systemd-coredump:!!:18583::::::
+vboxadd:!:18583::::::
+sshd:*:18583:0:99999:7:::
+user1:$6$..dtflkKrE/A2Lju$uiz7k.sjhmG5zWGbn1QhDkgELbk0pahJCruZebxPwjMP0TxneH4hDp8Ajqd8XSXGa1CpkOWIkucXqE3oK2j8S/:18590:0:99999:7:::
+user2:$6$hGbcL/XToiOERz2t$cFo0oHBvW4T69l29JKsrfXZ6SCRBlWHrcFUVEYVO6wDtj68V2F.hp0nHzryeqV4AyveEGq5SpFfccinNWIozW1:18590:0:99999:7:::
+eurich75@eurich75-VirtualBox:~$ useradd -help
+Использование: useradd [параметры] ПОЛЬЗОВАТЕЛЬ
+               useradd -D
+               useradd -D [параметры]
+
+Параметры:
+      --badnames                do not check for bad names
+  -b, --base-dir БАЗ_КАТ        базовый каталог для домашнего каталога новой
+                                учётной записи
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment КОММЕНТАРИЙ     поле GECOS новой учётной записи
+  -d, --home-dir ДОМ_КАТ        домашний каталог новой учётной записи
+  -D, --defaults                показать или изменить настройки
+                                по умолчанию для useradd
+  -e, --expiredate ДАТА_УСТ     дата устаревания новой учётной записи
+  -f, --inactive НЕАКТИВНОСТЬ   период неактивности пароля новой учётной записи
+  -g, --gid ГРУППА              имя или ID первичной группы новой
+                                учётной записи
+  -G, --groups ГРУППЫ           список дополнительных групп новой
+                                учётной записи
+  -h, --help                    показать данное сообщение и закончить работу
+  -k, --skel КАБ_ШАБ            использовать альтернативный каталог с шаблонами
+  -K, --key КЛЮЧ=ЗНАЧЕНИЕ       заменить значение по умолчанию
+                                из /etc/login.defs
+  -l, --no-log-init             не добавлять пользователя в базы данных lastlog и
+                                faillog
+  -m, --create-home             создать домашний каталог пользователя
+  -M, --no-create-home          не создавать домашний каталог пользователя
+  -N, --no-user-group           не создавать группу с тем же именем что и у
+                                пользователя
+  -o, --non-unique              разрешить создание пользователей с
+                                повторяющимися (не уникальными) UID
+  -p, --password ПАРОЛЬ         зашифрованный пароль новой учётной записи
+  -r, --system                  создавать системную группу
+  -R, --root КАТ_CHROOT         каталог, в который выполняется chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell ОБОЛОЧКА          регистрационная оболочка новой
+                                учётной записи
+  -u, --uid UID                 пользовательский ID новой учётной записи
+  -U, --user-group              создать группу с тем же именем что и у
+                                пользователя
+  -Z, --selinux-user SEUSER     использовать указанного SEUSER для
+                                пользовательского сопоставления SELinux
+      --extrausers              Use the extra users database
+
+eurich75@eurich75-VirtualBox:~$ sudo userdel -r user2
+userdel: почтовый ящик user2 (/var/mail/user2) не найден
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+user1:x:1001:1001::/home/user1:/bin/bash
+eurich75@eurich75-VirtualBox:~$ ls /home/
+eurich75  user1
+eurich75@eurich75-VirtualBox:~$ userdel -help
+Использование: userdel [параметры] ПОЛЬЗОВАТЕЛЬ
+
+Параметры:
+  -f, --force                   удалять файлы, даже если они
+                                не принадлежат пользователю
+  -h, --help                    показать данное сообщение и закончить работу
+  -r, --remove                  удалить домашний каталог и почтовый ящик
+  -R, --root КАТ_CHROOT         каталог, в который выполняется chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+      --extrausers              Use the extra users database
+  -Z, --selinux-user            удалить все пользовательские сопоставления
+                                SELinux для пользователя
+
+eurich75@eurich75-VirtualBox:~$ usermod --help
+Использование: usermod [параметры] ПОЛЬЗОВАТЕЛЬ
+
+Параметры:
+  -b, --badnames                allow bad names
+  -c, --comment КОММЕНТАРИЙ     новое значение поля GECOS
+  -d, --home ДОМ_КАТ            новый домашний каталог учётной записи
+  -e, --expiredate ДАТА_УСТ     установить дату окончания действия
+                                учётной записи в ДАТА_УСТ
+  -f, --inactive НЕАКТИВНОСТЬ   установить период неактивности пароля после
+                                устаревания учётной записи равным НЕАКТИВНОСТЬ
+  -g, --gid ГРУППА              принудительно назначить первичную ГРУППУ
+  -G, --groups ГРУППЫ           список дополнительных ГРУПП
+  -a, --append                  добавить пользователя в дополнительные
+                                ГРУППЫ, указанные в параметре -G не удаляя
+                                пользователя из других групп
+  -h, --help                    показать данное сообщение и закончить работу
+  -l, --login НОВОЕ_ИМЯ         новое значение имени учётной записи
+  -L, --lock                    заблокировать учётную запись
+  -m, --move-home               переместить содержимое домашнего каталога в
+                                новое место (использовать только вместе с -d)
+  -o, --non-unique              разрешить создание учётной записи с уже
+                                имеющимся (не уникальным) UID
+  -p, --password ПАРОЛЬ         задать новый шифрованный пароль для
+                                учётной записи
+  -R, --root КАТ_CHROOT         каталог, в который выполняется chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell ОБОЛОЧКА          новая регистрационная оболочка для учётной
+                                записи
+  -u, --uid UID                 новый UID для учётной записи
+  -U, --unlock                  разблокировать учётную запись
+  -v, --add-subuids ПЕРВ-ПОСЛ   добавить диапазон подчинённых uid
+  -V, --del-subuids ПЕРВ-ПОСЛ   удалить диапазон подчинённых uid
+  -w, --add-subgids ПЕРВ-ПОСЛ   добавить диапазон подчинённых gid
+  -W, --del-subgids ПЕРВ-ПОСЛ   удалить диапазон подчинённых gid
+  -Z, --selinux-user SEUSER     новое пользовательское сопоставление
+                                SELinux для учётной записи
+
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ sudo usermod -aG sudo user1
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75,user1
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+team1:x:1003:
+team2:x:1004:
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 56
+-rw-rw-r-- 1 eurich75 eurich75  403 ноя 24 17:44  eu_rca.pub
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75 1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 eurich75 eurich75   26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75 1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ sudo crown user1:team1 text2.txt
+sudo: crown: команда не найдена
+eurich75@eurich75-VirtualBox:~$ sudo chown user1:team1 text2.txt
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 56
+-rw-rw-r-- 1 eurich75 eurich75  403 ноя 24 17:44  eu_rca.pub
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75 1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 user1    team1      26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75 1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ chown --help
+Использование: chown [КЛЮЧ]… [ВЛАДЕЛЕЦ][:[ГРУППА]] ФАЙЛ…
+       или:    chown [КЛЮЧ]… --reference=ОФАЙЛ ФАЙЛ…
+Смена владельца и группы указанного ФАЙЛА на ВЛАДЕЛЬЦА и/или ГРУППУ.
+При задании --reference, сменить владельца и группу
+указанных ФАЙЛОВ на такие же как у ЭФАЙЛА.
+
+  -c, --changes          как verbose, но выводить только при выполнении
+                         изменений
+  -f, --silent, --quiet  не выводить большинство сообщений об ошибках
+  -v, --verbose          выводить диагностические сообщения по каждому файлу
+      --dereference      применять к файлу по символьной ссылке, а не к самой
+                         ссылке (по умолчанию)
+  -h, --no-dereference   применять к символьной ссылке, а не к самому файлу
+                         (имеет смысл только на системах, где
+                         можно изменять владельца символьной ссылки)
+      --from=ТЕКУЩИЙ_ВЛАДЕЛЕЦ:ТЕКУЩАЯ_ГРУППА
+                          Изменяет владельца и/или группу каждого файла
+                          только если текущий владелец и/или группа
+                          совпадают с указанными.
+                          Как группа, так и владелец могут быть опущены;
+                          в этом случае совпадение для данного атрибута
+                          не обязательно.
+      --no-preserve-root не обрабатывать «/» особым образом (по умолчанию)
+      --preserve-root    отказываться рекурсивно обрабатывать «/»
+      --reference=ЭФАЙЛ  использовать владельца и группу ЭФАЙЛа, вместо
+                         указанных значений ВЛАДЕЛЕЦ:ГРУППА
+  -R, --recursive        рекурсивно обрабатывать файлы и каталоги
+
+Следующие параметры влияют на способ обхода иерархии каталогов при
+заданном параметре -R. Если указано несколько этих параметров, действует
+только последний.
+
+  -H                     если аргумент командной строки является символьной
+                         ссылкой на каталог, перейти по ней
+  -L                     переходить по любой встреченной символьной ссылке на
+                         каталог
+  -P                     не переходить по символьным ссылкам (по умолчанию)
+
+      --help     показать эту справку и выйти
+      --version  показать информацию о версии и выйти
+
+Владелец не изменяется, если он не задан в аргументе.  Группа также не
+изменяется, если не задана; но если после символьного ВЛАДЕЛЬЦА стоит
+символ «:», подразумевается изменение группы на основную группу текущего
+пользователя.
+ВЛАДЕЛЕЦ и ГРУППА могут быть как числовыми, так и символьными.
+
+Примеры:
+  chown root /u        Меняет владельца /u на «root».
+  chown root:staff /u  То же, но еще меняет группу на «staff».
+  chown -hR root /u    Меняет владельца /u и вложенных файлов на «root».
+
+Оперативная справка GNU coreutils: <https://www.gnu.org/software/coreutils/>
+Об ошибках в переводе сообщений «chown» сообщайте по адресу <gnu@d07.ru>
+Полная документация: <https://www.gnu.org/software/coreutils/chown>
+или доступная локально: info '(coreutils) chown invocation'
+eurich75@eurich75-VirtualBox:~$ ls
+ eu_rca.pub   lesson3_copy      text2.txt        Видео       Загрузки      Музыка         'Рабочий стол'
+ lesson3     'nano file1.txt'  'vim file1.txt'   Документы   Изображения   Общедоступные   Шаблоны
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 56
+-rw-rw-r-- 1 eurich75 eurich75  403 ноя 24 17:44  eu_rca.pub
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75 1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 user1    team1      26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75 1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ sudo chgrp -R team1 lesson3
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 56
+-rw-rw-r-- 1 eurich75 eurich75  403 ноя 24 17:44  eu_rca.pub
+drwxrwxr-x 2 eurich75 team1    4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75 1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 user1    team1      26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75 1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ sudo /etc/sudoers
+sudo: /etc/sudoers: команда не найдена
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 56
+-rw-rw-r-- 1 eurich75 eurich75  403 ноя 24 17:44  eu_rca.pub
+drwxrwxr-x 2 eurich75 team1    4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75 4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75 1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 user1    team1      26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75 1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75 4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75,user1
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+team1:x:1003:
+team2:x:1004:
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ sudoedit
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
+eurich75@eurich75-VirtualBox:~$ sudoedit /etc/sudoers
+sudoedit: /etc/sudoers не изменено
+eurich75@eurich75-VirtualBox:~$ sudoedit /etc/sudoers
+sudoeditsudoedit: /etc/sudoers не изменено
+eurich75@eurich75-VirtualBox:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:115::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:109:116:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:110:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:111:117:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:113:120:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+avahi:x:115:121:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/usr/sbin/nologin
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+saned:x:117:123::/var/lib/saned:/usr/sbin/nologin
+nm-openvpn:x:118:124:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+hplip:x:119:7:HPLIP system user,,,:/run/hplip:/bin/false
+whoopsie:x:120:125::/nonexistent:/bin/false
+colord:x:121:126:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:122:127::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:123:128:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+gnome-initial-setup:x:124:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:125:130:Gnome Display Manager:/var/lib/gdm3:/bin/false
+eurich75:x:1000:1000:EUrich75,,,:/home/eurich75:/bin/bash
+systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+vboxadd:x:998:1::/var/run/vboxadd:/bin/false
+sshd:x:126:65534::/run/sshd:/usr/sbin/nologin
+user1:x:1001:1001::/home/user1:/bin/bash
+eurich75@eurich75-VirtualBox:~$ su user1
+Пароль:
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+user1@eurich75-VirtualBox:/home/eurich75$ id
+uid=1001(user1) gid=1001(user1) группы=1001(user1),27(sudo)
+user1@eurich75-VirtualBox:/home/eurich75$ cd
+user1@eurich75-VirtualBox:~$ pwd
+/home/user1
+user1@eurich75-VirtualBox:~$ exit
+exit
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ eurich75@eurich75-VirtualBox:~$ sudoedit /etc/sudoers
+sudoeditsudoedit: /etc/sudoers не изменено
+eurich75@eurich75-VirtualBox:~$ sudo cat /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+
+%sudo ALL=(ALL) NOPASSWD:ALL
+eurich75@eurich75-VirtualBox:~$
+eurich75@eurich75-VirtualBox:~$ sudo usermod -aG root eurich75
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:eurich75
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75,user1
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:user1
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+team1:x:1003:
+team2:x:1004:
+eurich75@eurich75-VirtualBox:~$
