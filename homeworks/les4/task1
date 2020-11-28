@@ -1,0 +1,1427 @@
+1. Потоки ввода/вывода. Создать файл, используя команду echo.
+Используя команду cat, прочитать содержимое каталога etc, ошибки
+перенаправить в отдельный файл.
+2. Конвейер (pipeline). Использовать команду cut на вывод длинного
+списка каталога, чтобы отобразить только права доступа к файлам.
+Затем отправить в конвейере этот вывод на sort и uniq, чтобы отфильтровать
+все повторяющиеся строки.
+3. Управление процессами.) Изменить конфигурационный файл службы
+SSH: /etc/ssh/sshd_config, отключив аутентификацию по паролю PasswordAuthentication
+no. Выполните рестарт службы systemctl restart sshd (service sshd restart),
+верните аутентификацию по паролю, выполните reload службы systemctl reload sshd
+(services sshd reload). В чём различие между действиями restart и reload? Создайте
+файл при помощи команды cat > file_name, напишите текст и завершите комбинацией ctrl+d.
+Какой сигнал передадим процессу?
+4. Сигналы процессам. Запустите mc. Используя ps, найдите PID процесса, завершите
+процесс, передав ему сигнал 9.
+
+ssh: connect to host 192.168.1.41 port 22: Connection refused  ???
+
+eurich75@eurich75-VirtualBox:~$ sudo systemctl status sshd
+Unit sshd.service could not be found.                          ???
+
+
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      full.log      'nano file1.txt'   Документы     Общедоступные
+ errors.log   lesson3        text2.txt         Загрузки     'Рабочий стол'
+ eu_rca.pub   lesson3_copy  'vim file1.txt'    Изображения   Шаблоны
+ file1.txt    ls.txt         Видео             Музыка
+eurich75@eurich75-VirtualBox:~$ echo 'Hello, team!' > testfile.txt
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      full.log      'nano file1.txt'   Видео         Музыка
+ errors.log   lesson3        testfile.txt      Документы     Общедоступные
+ eu_rca.pub   lesson3_copy   text2.txt         Загрузки     'Рабочий стол'
+ file1.txt    ls.txt        'vim file1.txt'    Изображения   Шаблоны
+eurich75@eurich75-VirtualBox:~$ cat testfile.txt
+Hello, team!
+eurich75@eurich75-VirtualBox:~$ cat /etc/* 2>> errors.log
+# /etc/adduser.conf: `adduser' configuration.
+# See adduser(8) and adduser.conf(5) for full documentation.
+
+# The DSHELL variable specifies the default login shell on your
+# system.
+DSHELL=/bin/bash
+
+# The DHOME variable specifies the directory containing users' home
+# directories.
+DHOME=/home
+
+# If GROUPHOMES is "yes", then the home directories will be created as
+# /home/groupname/user.
+GROUPHOMES=no
+
+# If LETTERHOMES is "yes", then the created home directories will have
+# an extra directory - the first letter of the user name. For example:
+# /home/u/user.
+LETTERHOMES=no
+
+# The SKEL variable specifies the directory containing "skeletal" user
+# files; in other words, files such as a sample .profile that will be
+# copied to the new user's home directory when it is created.
+SKEL=/etc/skel
+
+# FIRST_SYSTEM_[GU]ID to LAST_SYSTEM_[GU]ID inclusive is the range for UIDs
+# for dynamically allocated administrative and system accounts/groups.
+# Please note that system software, such as the users allocated by the base-passwd
+# package, may assume that UIDs less than 100 are unallocated.
+FIRST_SYSTEM_UID=100
+LAST_SYSTEM_UID=999
+
+FIRST_SYSTEM_GID=100
+LAST_SYSTEM_GID=999
+
+# FIRST_[GU]ID to LAST_[GU]ID inclusive is the range of UIDs of dynamically
+# allocated user accounts/groups.
+FIRST_UID=1000
+LAST_UID=59999
+
+FIRST_GID=1000
+LAST_GID=59999
+
+# The USERGROUPS variable can be either "yes" or "no".  If "yes" each
+# created user will be given their own group to use as a default.  If
+# "no", each created user will be placed in the group whose gid is
+# USERS_GID (see below).
+USERGROUPS=yes
+
+# If USERGROUPS is "no", then USERS_GID should be the GID of the group
+# `users' (or the equivalent group) on your system.
+USERS_GID=100
+
+# If DIR_MODE is set, directories will be created with the specified
+# mode. Otherwise the default mode 0755 will be used.
+DIR_MODE=0755
+
+# If SETGID_HOME is "yes" home directories for users with their own
+# group the setgid bit will be set. This was the default for
+# versions << 3.13 of adduser. Because it has some bad side effects we
+# no longer do this per default. If you want it nevertheless you can
+# still set it here.
+SETGID_HOME=no
+
+# If QUOTAUSER is set, a default quota will be set from that user with
+# `edquota -p QUOTAUSER newuser'
+QUOTAUSER=""
+
+# If SKEL_IGNORE_REGEX is set, adduser will ignore files matching this
+# regular expression when creating a new home directory
+SKEL_IGNORE_REGEX="dpkg-(old|new|dist|save)"
+
+# Set this if you want the --add_extra_groups option to adduser to add
+# new users to other groups.
+# This is the list of groups that new non-system users will be added to
+# Default:
+#EXTRA_GROUPS="dialout cdrom floppy audio video plugdev users"
+
+# If ADD_EXTRA_GROUPS is set to something non-zero, the EXTRA_GROUPS
+# option above will be default behavior for adding new, non-system users
+#ADD_EXTRA_GROUPS=1
+
+
+# check user and group names also against this regular expression.
+#NAME_REGEX="^[a-z][-a-z0-9_]*\$"
+
+# use extrausers by default
+#USE_EXTRAUSERS=1
+# /etc/anacrontab: configuration file for anacron
+
+# See anacron(8) and anacrontab(5) for details.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/root
+LOGNAME=root
+
+# These replace cron's entries
+1	5	cron.daily	run-parts --report /etc/cron.daily
+7	10	cron.weekly	run-parts --report /etc/cron.weekly
+@monthly	15	cron.monthly	run-parts --report /etc/cron.monthly
+#APG_PARM sets the defaults if apg is executed without any command arguments
+#
+#
+#Examples:
+#
+#Pronounceable passwords with special characters:
+#APG_PARM="-c /dev/urandom  -m 8 -x 14  -M SNCL  -t"
+#
+#Pronounceable passwords without special characters:
+#APG_PARM="-c /dev/urandom  -m 8 -x 14  -M NCL  -t"
+#
+#Random passwords:
+#APG_PARM="-c /dev/urandom  -m 20 -x 20  -a 1 -M SNCL"
+
+APG_PARM="-c /dev/urandom  -m 8 -x 14  -M SNCL  -t"
+#
+# This is the configuration file for AppStream.
+# If data for your distribution is missing, you can submit
+# a patch to include it upstream.
+# The distribution identifier is fetched from /etc/os-release
+#
+
+[general]
+
+#
+# Set this value to have AppStream always prefer data from a local metainfo file
+# over data provided from a network source.
+# This option is only useful in case one wants to test how data from local
+# metainfo files looks like in the software center prior to making a release
+# containing the new metadata.
+#
+#PreferLocalMetainfoData=true
+
+#
+# Distribution specific settings
+#
+[debian]
+ScreenshotUrl=http://screenshots.debian.net
+
+[opensuse]
+ScreenshotUrl=http://software.opensuse.org/package
+
+[ubuntu]
+ScreenshotUrl=http://screenshots.ubuntu.com
+# System-wide .bashrc file for interactive bash(1) shells.
+
+# To enable the settings / commands in this file for login shells as well,
+# this file has to be sourced in /etc/profile.
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, overwrite the one in /etc/profile)
+# but only if not SUDOing and have SUDO_PS1 set; then assume smart user.
+if ! [ -n "${SUDO_USER}" -a -n "${SUDO_PS1}" ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+# Commented out, don't overwrite xterm -T "title" -n "icontitle" by default.
+# If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+#    ;;
+#*)
+#    ;;
+#esac
+
+# enable bash completion in interactive shells
+#if ! shopt -oq posix; then
+#  if [ -f /usr/share/bash-completion/bash_completion ]; then
+#    . /usr/share/bash-completion/bash_completion
+#  elif [ -f /etc/bash_completion ]; then
+#    . /etc/bash_completion
+#  fi
+#fi
+
+# sudo hint
+if [ ! -e "$HOME/.sudo_as_admin_successful" ] && [ ! -e "$HOME/.hushlogin" ] ; then
+    case " $(groups) " in *\ admin\ *|*\ sudo\ *)
+    if [ -x /usr/bin/sudo ]; then
+	cat <<-EOF
+	To run a command as administrator (user "root"), use "sudo <command>".
+	See "man sudo_root" for details.
+
+	EOF
+    fi
+    esac
+fi
+
+# if the command-not-found package is installed, use it
+if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found ]; then
+	function command_not_found_handle {
+	        # check because c-n-f could've been removed in the meantime
+                if [ -x /usr/lib/command-not-found ]; then
+		   /usr/lib/command-not-found -- "$1"
+                   return $?
+                elif [ -x /usr/share/command-not-found/command-not-found ]; then
+		   /usr/share/command-not-found/command-not-found -- "$1"
+                   return $?
+		else
+		   printf "%s: command not found\n" "$1" >&2
+		   return 127
+		fi
+	}
+fi
+. /usr/share/bash-completion/bash_completion
+#
+# This file contains a list of port numbers between 600 and 1024,
+# which should not be used by bindresvport. bindresvport is mostly
+# called by RPC services. This mostly solves the problem, that a
+# RPC service uses a well known port of another service.
+#
+631	# cups
+636	# ldaps
+655	# tinc
+774	# rpasswd
+783	# spamd
+873	# rsync
+921	# lwresd
+993	# imaps
+995	# pops
+# Documents/brltty.conf.  Generated from brltty.conf.in by configure.
+###############################################################################
+# BRLTTY - A background process providing access to the console screen (when in
+#          text mode) for a blind person using a refreshable braille display.
+#
+# Copyright (C) 1995-2019 by The BRLTTY Developers.
+#
+# BRLTTY comes with ABSOLUTELY NO WARRANTY.
+#
+# This is free software, placed under the terms of the
+# GNU Lesser General Public License, as published by the Free Software
+# Foundation; either version 2.1 of the License, or (at your option) any
+# later version. Please see the file LICENSE-LGPL for details.
+#
+# Web Page: http://brltty.app/
+#
+# This software is maintained by Dave Mielke <dave@mielke.cc>.
+###############################################################################
+
+# This is a configuration file template for the BRLTTY application.
+# Uncomment those entries which apply to your personal needs and system
+# requirements.
+
+# BRLTTY expects to find its configuration file in "/etc/brltty.conf"
+# (can be overridden with the -f [--configuration-file=] option).
+# If it doesn't exist, then BRLTTY silently continues but may require
+# that certain command line options be explicitly supplied.
+
+# Blank lines are ignored. The character '#', anywhere on a line,
+# initiates a comment; all characters from it to the end of that line
+# are ignored.
+
+# Each configuration entry consists of a keyword followed by its operand.
+# An arbitrary amount of white space, (blanks and/or tabs), may occur
+# before the keyword, as well as before and after the operand. Keyword
+# processing is not case sensitive. Examples of valid entries are:
+#
+#	Braille-Driver	pm	# Papenmeier braille displays.
+#	braille-device	serial:ttyS0	# The first serial device.
+#	SPEECH-DRIVER	fv	# The Festival Text to Speech System.
+
+# The default settings given within the following descriptions assume no
+# special build options (see "./configure --help" in the top-level
+# directory of the source tree.
+
+
+############################
+# Generic Braille Settings #
+############################
+
+# The braille-driver directive specifies the two-letter driver
+# identification code of the driver for the braille display.
+# If not specified, autodetection will be performed.
+# If more than one driver, separated by commas, is specified,
+# then autodetection will be performed amongst them.
+# (can be overridden with the -b [--braille-driver=] option)
+#braille-driver	auto	# autodetect
+#braille-driver	al	# Alva
+#braille-driver	at	# Albatross
+#braille-driver	ba	# BrlAPI
+#braille-driver	bc	# BrailComm
+#braille-driver	bd	# Braudi
+#braille-driver	bg	# B2G
+#braille-driver	bl	# BrailleLite
+#braille-driver	bm	# Baum
+#braille-driver	bn	# BrailleNote
+#braille-driver	cb	# CombiBraille
+#braille-driver	ce	# Cebra
+#braille-driver	ec	# EcoBraille
+#braille-driver	eu	# EuroBraille
+#braille-driver	fs	# FreedomScientific
+#braille-driver	hd	# Hedo
+#braille-driver	hm	# HIMS
+#braille-driver	ht	# HandyTech
+#braille-driver	hw	# HumanWare
+#braille-driver	ic	# Inceptor
+#braille-driver	ir	# Iris
+#braille-driver	lb	# Libbraille
+#braille-driver	lt	# LogText
+#braille-driver	mb	# MultiBraille
+#braille-driver	md	# MDV
+#braille-driver	mm	# BrailleMemo
+#braille-driver	mn	# MiniBraille
+#braille-driver	mt	# Metec
+#braille-driver	np	# NinePoint
+#braille-driver	pg	# Pegasus
+#braille-driver	pm	# Papenmeier
+#braille-driver	sk	# Seika
+#braille-driver	tn	# TechniBraille
+#braille-driver	ts	# TSI
+#braille-driver	tt	# TTY
+#braille-driver	vd	# VideoBraille
+#braille-driver	vo	# Voyager, BraillePen/EasyLink
+#braille-driver	vr	# Virtual
+#braille-driver	vs	# VisioBraille
+#braille-driver	xw	# XWindow
+
+# The braille-device directive specifies the device to which the braille
+# display is connected. The generic syntax is type:device. The device
+# type is optional, and, for backward compatibility, defaults to serial.
+# The following devices are supported (brackets indicate optionality):
+#    serial:path (relative paths are anchored at "/dev")
+#    usb:[serial-number]
+#    bluetooth:address
+# If not specified, "usb:,bluetooth:" will be used.
+# If more than one device, separated by commas, is specified,
+# then each of them will be probed in turn.
+# (can be overridden with the -d [--braille-device=] option)
+#braille-device	serial:ttyS0	# First serial device.
+#braille-device	usb:		# First USB device matching braille driver.
+#braille-device	usb:nnnnn	# Specific USB device by serial number.
+#braille-device	bluetooth:xx:xx:xx:xx:xx:xx	# Specific bluetooth device by address.
+#
+# NOTE: If the device is connected via a serial-to-USB adapter then setting
+# braille-device to usb: will not work. In this case it needs to identify the
+# virtual serial device which the kernel has created for the adapter, i.e. to
+# something like serial:ttyUSB0 (see the kernel messages on device plug to get
+# the actual device name).
+
+# The release-device directive specifies whether or not the device to which the
+# braille display is connected is to be released when the current screen or
+# window can't be read by BRLTTY. If not specified, "on" will be used on Windows
+# platforms and "off" will be used on all other platforms.
+# (can be overridden with the -r [--release-device] option)
+#release-device	on	# Release the device.
+#release-device	off	# Don't release the device.
+
+# The text-table directive specifies which text table to use. Relative paths
+# are anchored at "/etc/brltty/Text". If not specified, locale-based
+# autoselection with fallback to "en-nabcc" will be performed.
+# (can be overridden with the -t [--text-table=] option)
+#text-table	auto	# locale-based autoselection
+#text-table	ar	# Arabic (generic)
+#text-table	as	# Assamese
+#text-table	awa	# Awadhi
+#text-table	bg	# Bulgarian
+#text-table	bh	# Bihari
+#text-table	bn	# Bengali
+#text-table	bo	# Tibetan
+#text-table	bra	# Braj
+#text-table	brf	# Braille Ready Format (for viewing .brf files within an editor or pager)
+#text-table	cs	# Czech
+#text-table	cy	# Welsh
+#text-table	da	# Danish
+#text-table	da-1252	# Danish (Svend Thougaard, 2002-11-18)
+#text-table	da-lt	# Danish (LogText)
+#text-table	de	# German
+#text-table	dra	# Dravidian
+#text-table	el	# Greek
+#text-table	en	# English
+#text-table	en_CA	# English (Canada)
+#text-table	en_GB	# English (United Kingdom)
+#text-table	en_US	# English (United States)
+#text-table	en-nabcc	# English (North American Braille Computer Code)
+#text-table	eo	# Esperanto
+#text-table	es	# Spanish
+#text-table	et	# Estonian
+#text-table	fi	# Finnish
+#text-table	fr	# French
+#text-table	fr_CA	# French (Canada)
+#text-table	fr_FR	# French (France)
+#text-table	fr-2007	# French (unified 2007)
+#text-table	fr-cbifs	# French (Code Braille Informatique Français Standard)
+#text-table	fr-vs	# French (VisioBraille)
+#text-table	ga	# Irish
+#text-table	gd	# Gaelic
+#text-table	gon	# Gondi
+#text-table	gu	# Gujarati
+#text-table	he	# Hebrew
+#text-table	hi	# Hindi
+#text-table	hr	# Croatian
+#text-table	hu	# Hungarian
+#text-table	hy	# Armenian
+#text-table	is	# Icelandic
+#text-table	it	# Italian
+#text-table	kha	# Khasi
+#text-table	kn	# Kannada
+#text-table	kok	# Konkani
+#text-table	kru	# Kurukh
+#text-table	lt	# Lituanian
+#text-table	lv	# Latvian
+#text-table	mg	# Malagasy
+#text-table	mi	# Maori
+#text-table	ml	# Malayalam
+#text-table	mni	# Manipuri
+#text-table	mr	# Marathi
+#text-table	mt	# Maltese
+#text-table	mun	# Munda
+#text-table	mwr	# Marwari
+#text-table	ne	# Nepali
+#text-table	new	# Newari
+#text-table	nl	# Dutch
+#text-table	nl_BE	# Dutch (Belgium)
+#text-table	nl_NL	# Dutch (Netherlands)
+#text-table	no	# Norwegian
+#text-table	no-generic	# Norwegian (with support for other languages)
+#text-table	no-oup	# Norwegian (Offentlig utvalg for punktskrift)
+#text-table	nwc	# Newari (old)
+#text-table	or	# Oriya
+#text-table	pa	# Panjabi
+#text-table	pi	# Pali
+#text-table	pl	# Polish
+#text-table	pt	# Portuguese
+#text-table	ro	# Romanian
+#text-table	ru	# Russian
+#text-table	se	# Sami (Northern)
+#text-table	sa	# Sanskrit
+#text-table	sat	# Santali
+#text-table	sd	# Sindhi
+#text-table	sk	# Slovak
+#text-table	sl	# Slovenian
+#text-table	sv	# Swedish
+#text-table	sv-1989	# Swedish (1989 standard)
+#text-table	sv-1996	# Swedish (1996 standard)
+#text-table	sw	# Swahili
+#text-table	ta	# Tamil
+#text-table	te	# Telugu
+#text-table	tr	# Turkish
+#text-table	uk	# Ukrainian
+#text-table	vi	# Vietnamese
+
+# The attributes-table directive specifies which attributes table to use.
+# Relative paths are anchored at "/etc/brltty/Attributes". If not specified,
+# "left_right" will be used.
+# (can be overridden with the -a [--attributes-table=] option)
+#attributes-table	left_right	# foreground colour in the left column and background colour in the right column
+#attributes-table	invleft_right	# inverse foreground colour in the left column and background colour in the right column
+#attributes-table	upper_lower	# foreground colour in the upper square and background colour in the lower square
+# Enable logging (results in a extensive report file in /var/log, named
+# "usb_modeswitch_<interface-name>" and probably others
+
+EnableLogging=0
+
+# Optional increase of "delay_use" for the usb-storage driver; there are hints
+# that a recent kernel default change to 1 sec. may lead to problems, particu-
+# larly with USB 3.0 ports. Set this to at least 3 (seconds) in that case.
+# Does nothing if the current system value is same or higher
+
+#SetStorageDelay=4
+
+# If the configuration for your Huawei modem uses the standard switching method,
+# you can globally set an alternative method here which provides a different mode:
+# either plain serial PPP (for older modems) or NCM which integrates nicely
+# with recent Linux distributions, possibly avoiding configuration through a
+# modem built-in web page. All other modems are not affected.
+# Available as per-device parameter 'AltHuaweiMode'
+
+HuaweiAltModeGlobal=0
+1,222,57,255,0,118,44,204,128,255,0,255,0,255,0,255
+1,56,181,199,111,38,181,204,128,0,255,255,0,0,255,255
+1,43,74,6,184,113,233,204,128,0,0,0,255,255,255,255
+###
+### Sample Wget initialization file .wgetrc
+###
+
+## You can use this file to change the default behaviour of wget or to
+## avoid having to type many many command-line options. This file does
+## not contain a comprehensive list of commands -- look at the manual
+## to find out what you can put into this file. You can find this here:
+##   $ info wget.info 'Startup File'
+## Or online here:
+##   https://www.gnu.org/software/wget/manual/wget.html#Startup-File
+##
+## Wget initialization file can reside in /etc/wgetrc
+## (global, for all users) or $HOME/.wgetrc (for a single user).
+##
+## To use the settings in this file, you will have to uncomment them,
+## as well as change them, in most cases, as the values on the
+## commented-out lines are the default values (e.g. "off").
+##
+## Command are case-, underscore- and minus-insensitive.
+## For example ftp_proxy, ftp-proxy and ftpproxy are the same.
+
+
+##
+## Global settings (useful for setting up in /etc/wgetrc).
+## Think well before you change them, since they may reduce wget's
+## functionality, and make it behave contrary to the documentation:
+##
+
+# You can set retrieve quota for beginners by specifying a value
+# optionally followed by 'K' (kilobytes) or 'M' (megabytes).  The
+# default quota is unlimited.
+#quota = inf
+
+# You can lower (or raise) the default number of retries when
+# downloading a file (default is 20).
+#tries = 20
+
+# Lowering the maximum depth of the recursive retrieval is handy to
+# prevent newbies from going too "deep" when they unwittingly start
+# the recursive retrieval.  The default is 5.
+#reclevel = 5
+
+# By default Wget uses "passive FTP" transfer where the client
+# initiates the data connection to the server rather than the other
+# way around.  That is required on systems behind NAT where the client
+# computer cannot be easily reached from the Internet.  However, some
+# firewalls software explicitly supports active FTP and in fact has
+# problems supporting passive transfer.  If you are in such
+# environment, use "passive_ftp = off" to revert to active FTP.
+#passive_ftp = off
+passive_ftp = on
+
+# The "wait" command below makes Wget wait between every connection.
+# If, instead, you want Wget to wait only between retries of failed
+# downloads, set waitretry to maximum number of seconds to wait (Wget
+# will use "linear backoff", waiting 1 second after the first failure
+# on a file, 2 seconds after the second failure, etc. up to this max).
+#waitretry = 10
+
+
+##
+## Local settings (for a user to set in his $HOME/.wgetrc).  It is
+## *highly* undesirable to put these settings in the global file, since
+## they are potentially dangerous to "normal" users.
+##
+## Even when setting up your own ~/.wgetrc, you should know what you
+## are doing before doing so.
+##
+
+# Set this to on to use timestamping by default:
+#timestamping = off
+
+# It is a good idea to make Wget send your email address in a `From:'
+# header with your request (so that server administrators can contact
+# you in case of errors).  Wget does *not* send `From:' by default.
+#header = From: Your Name <username@site.domain>
+
+# You can set up other headers, like Accept-Language.  Accept-Language
+# is *not* sent by default.
+#header = Accept-Language: en
+
+# You can set the default proxies for Wget to use for http, https, and ftp.
+# They will override the value in the environment.
+#https_proxy = http://proxy.yoyodyne.com:18023/
+#http_proxy = http://proxy.yoyodyne.com:18023/
+#ftp_proxy = http://proxy.yoyodyne.com:18023/
+
+# If you do not want to use proxy at all, set this to off.
+#use_proxy = on
+
+# You can customize the retrieval outlook.  Valid options are default,
+# binary, mega and micro.
+#dot_style = default
+
+# Setting this to off makes Wget not download /robots.txt.  Be sure to
+# know *exactly* what /robots.txt is and how it is used before changing
+# the default!
+#robots = on
+
+# It can be useful to make Wget wait between connections.  Set this to
+# the number of seconds you want Wget to wait.
+#wait = 0
+
+# You can force creating directory structure, even if a single is being
+# retrieved, by setting this to on.
+#dirstruct = off
+
+# You can turn on recursive retrieving by default (don't do this if
+# you are not sure you know what it means) by setting this to on.
+#recursive = off
+
+# To always back up file X as X.orig before converting its links (due
+# to -k / --convert-links / convert_links = on having been specified),
+# set this variable to on:
+#backup_converted = off
+
+# To have Wget follow FTP links from HTML files by default, set this
+# to on:
+#follow_ftp = off
+
+# To try ipv6 addresses first:
+#prefer-family = IPv6
+
+# Set default IRI support state
+#iri = off
+
+# Force the default system encoding
+#localencoding = UTF-8
+
+# Force the default remote server encoding
+#remoteencoding = UTF-8
+
+# Turn on to prevent following non-HTTPS links when in recursive mode
+#httpsonly = off
+
+# Tune HTTPS security (auto, SSLv2, SSLv3, TLSv1, PFS)
+#secureprotocol = auto
+# /etc/xattr.conf
+#
+# Format:
+# <pattern> <action>
+#
+# Actions:
+#   permissions - copy when trying to preserve permissions.
+#   skip - do not copy.
+
+system.nfs4_acl			permissions
+system.nfs4acl			permissions
+system.posix_acl_access		permissions
+system.posix_acl_default	permissions
+trusted.SGI_ACL_DEFAULT		skip		# xfs specific
+trusted.SGI_ACL_FILE		skip		# xfs specific
+trusted.SGI_CAP_FILE		skip		# xfs specific
+trusted.SGI_DMI_*		skip		# xfs specific
+trusted.SGI_MAC_FILE		skip		# xfs specific
+xfsroot.*			skip		# xfs specific; obsolete
+user.Beagle.*			skip		# ignore Beagle index data
+security.evm			skip		# may only be written by kernel
+# (c) Zygmunt Krynicki 2007,
+# Licensed under GPL, see COPYING for the whole text
+#
+# This script will look-up command in the database and suggest
+# installation of packages available from the repository
+
+if [[ -x /usr/lib/command-not-found ]] ; then
+	if (( ! ${+functions[command_not_found_handler]} )) ; then
+		function command_not_found_handler {
+			[[ -x /usr/lib/command-not-found ]] || return 1
+			/usr/lib/command-not-found --no-failure-msg -- ${1+"$1"} && :
+		}
+	fi
+fi
+eurich75@eurich75-VirtualBox:~$ cat errors.log
+cat: /etc/acpi: Это каталог
+cat: /etc/alsa: Это каталог
+cat: /etc/alternatives: Это каталог
+cat: /etc/apm: Это каталог
+cat: /etc/apparmor: Это каталог
+cat: /etc/apparmor.d: Это каталог
+cat: /etc/apport: Это каталог
+cat: /etc/apt: Это каталог
+cat: /etc/avahi: Это каталог
+cat: /etc/bash_completion.d: Это каталог
+cat: /etc/binfmt.d: Это каталог
+cat: /etc/bluetooth: Это каталог
+cat: /etc/brlapi.key: Отказано в доступе
+cat: /etc/brltty: Это каталог
+cat: /etc/ca-certificates: Это каталог
+cat: /etc/calendar: Это каталог
+cat: /etc/chatscripts: Это каталог
+cat: /etc/console-setup: Это каталог
+cat: /etc/cracklib: Это каталог
+cat: /etc/cron.d: Это каталог
+cat: /etc/cron.daily: Это каталог
+cat: /etc/cron.hourly: Это каталог
+cat: /etc/cron.monthly: Это каталог
+cat: /etc/cron.weekly: Это каталог
+cat: /etc/cups: Это каталог
+cat: /etc/cupshelpers: Это каталог
+cat: /etc/dbus-1: Это каталог
+cat: /etc/dconf: Это каталог
+cat: /etc/default: Это каталог
+cat: /etc/depmod.d: Это каталог
+cat: /etc/dhcp: Это каталог
+cat: /etc/dictionaries-common: Это каталог
+cat: /etc/dpkg: Это каталог
+cat: /etc/emacs: Это каталог
+cat: /etc/environment.d: Это каталог
+cat: /etc/firefox: Это каталог
+cat: /etc/fonts: Это каталог
+cat: /etc/fwupd: Это каталог
+cat: /etc/gdb: Это каталог
+cat: /etc/gdm3: Это каталог
+cat: /etc/geoclue: Это каталог
+cat: /etc/ghostscript: Это каталог
+cat: /etc/glvnd: Это каталог
+cat: /etc/gnome: Это каталог
+cat: /etc/groff: Это каталог
+cat: /etc/grub.d: Это каталог
+cat: /etc/gshadow: Отказано в доступе
+cat: /etc/gshadow-: Отказано в доступе
+cat: /etc/gss: Это каталог
+cat: /etc/gtk-2.0: Это каталог
+cat: /etc/gtk-3.0: Это каталог
+cat: /etc/hp: Это каталог
+cat: /etc/ifplugd: Это каталог
+cat: /etc/init: Это каталог
+cat: /etc/init.d: Это каталог
+cat: /etc/initramfs-tools: Это каталог
+cat: /etc/insserv.conf.d: Это каталог
+cat: /etc/iproute2: Это каталог
+cat: /etc/kernel: Это каталог
+cat: /etc/ldap: Это каталог
+cat: /etc/ld.so.conf.d: Это каталог
+cat: /etc/libblockdev: Это каталог
+cat: /etc/libnl-3: Это каталог
+cat: /etc/libpaper.d: Это каталог
+cat: /etc/libreoffice: Это каталог
+cat: /etc/logcheck: Это каталог
+cat: /etc/logrotate.d: Это каталог
+cat: /etc/mc: Это каталог
+cat: /etc/modprobe.d: Это каталог
+cat: /etc/modules-load.d: Это каталог
+cat: /etc/mysql: Это каталог
+cat: /etc/netplan: Это каталог
+cat: /etc/network: Это каталог
+cat: /etc/networkd-dispatcher: Это каталог
+cat: /etc/NetworkManager: Это каталог
+cat: /etc/newt: Это каталог
+cat: /etc/openvpn: Это каталог
+cat: /etc/opt: Это каталог
+cat: /etc/PackageKit: Это каталог
+cat: /etc/pam.d: Это каталог
+cat: /etc/pcmcia: Это каталог
+cat: /etc/perl: Это каталог
+cat: /etc/pki: Это каталог
+cat: /etc/pm: Это каталог
+cat: /etc/polkit-1: Это каталог
+cat: /etc/ppp: Это каталог
+cat: /etc/profile.d: Это каталог
+cat: /etc/pulse: Это каталог
+cat: /etc/python3: Это каталог
+cat: /etc/python3.8: Это каталог
+cat: /etc/rc0.d: Это каталог
+cat: /etc/rc1.d: Это каталог
+cat: /etc/rc2.d: Это каталог
+cat: /etc/rc3.d: Это каталог
+cat: /etc/rc4.d: Это каталог
+cat: /etc/rc5.d: Это каталог
+cat: /etc/rc6.d: Это каталог
+cat: /etc/rcS.d: Это каталог
+cat: /etc/rsyslog.d: Это каталог
+cat: /etc/sane.d: Это каталог
+cat: /etc/security: Это каталог
+cat: /etc/selinux: Это каталог
+cat: /etc/sensors.d: Это каталог
+cat: /etc/sgml: Это каталог
+cat: /etc/shadow: Отказано в доступе
+cat: /etc/shadow-: Отказано в доступе
+cat: /etc/skel: Это каталог
+cat: /etc/snmp: Это каталог
+cat: /etc/speech-dispatcher: Это каталог
+cat: /etc/ssh: Это каталог
+cat: /etc/ssl: Это каталог
+cat: /etc/sudoers: Отказано в доступе
+cat: /etc/sudoers.d: Это каталог
+cat: /etc/sysctl.d: Это каталог
+cat: /etc/systemd: Это каталог
+cat: /etc/terminfo: Это каталог
+cat: /etc/thermald: Это каталог
+cat: /etc/thunderbird: Это каталог
+cat: /etc/tmpfiles.d: Это каталог
+cat: /etc/ubuntu-advantage: Это каталог
+cat: /etc/udev: Это каталог
+cat: /etc/udisks2: Это каталог
+cat: /etc/ufw: Это каталог
+cat: /etc/update-manager: Это каталог
+cat: /etc/update-motd.d: Это каталог
+cat: /etc/update-notifier: Это каталог
+cat: /etc/UPower: Это каталог
+cat: /etc/usb_modeswitch.d: Это каталог
+cat: /etc/vim: Это каталог
+cat: /etc/vmware-tools: Это каталог
+cat: /etc/vulkan: Это каталог
+cat: /etc/wpa_supplicant: Это каталог
+cat: /etc/X11: Это каталог
+cat: /etc/xdg: Это каталог
+cat: /etc/xml: Это каталог
+cat: /etc/acpi: Это каталог
+cat: /etc/alsa: Это каталог
+cat: /etc/alternatives: Это каталог
+cat: /etc/apm: Это каталог
+cat: /etc/apparmor: Это каталог
+cat: /etc/apparmor.d: Это каталог
+cat: /etc/apport: Это каталог
+cat: /etc/apt: Это каталог
+cat: /etc/avahi: Это каталог
+cat: /etc/bash_completion.d: Это каталог
+cat: /etc/binfmt.d: Это каталог
+cat: /etc/bluetooth: Это каталог
+cat: /etc/brlapi.key: Отказано в доступе
+cat: /etc/brltty: Это каталог
+cat: /etc/ca-certificates: Это каталог
+cat: /etc/calendar: Это каталог
+cat: /etc/chatscripts: Это каталог
+cat: /etc/console-setup: Это каталог
+cat: /etc/cracklib: Это каталог
+cat: /etc/cron.d: Это каталог
+cat: /etc/cron.daily: Это каталог
+cat: /etc/cron.hourly: Это каталог
+cat: /etc/cron.monthly: Это каталог
+cat: /etc/cron.weekly: Это каталог
+cat: /etc/cups: Это каталог
+cat: /etc/cupshelpers: Это каталог
+cat: /etc/dbus-1: Это каталог
+cat: /etc/dconf: Это каталог
+cat: /etc/default: Это каталог
+cat: /etc/depmod.d: Это каталог
+cat: /etc/dhcp: Это каталог
+cat: /etc/dictionaries-common: Это каталог
+cat: /etc/dpkg: Это каталог
+cat: /etc/emacs: Это каталог
+cat: /etc/environment.d: Это каталог
+cat: /etc/firefox: Это каталог
+cat: /etc/fonts: Это каталог
+cat: /etc/fwupd: Это каталог
+cat: /etc/gdb: Это каталог
+cat: /etc/gdm3: Это каталог
+cat: /etc/geoclue: Это каталог
+cat: /etc/ghostscript: Это каталог
+cat: /etc/glvnd: Это каталог
+cat: /etc/gnome: Это каталог
+cat: /etc/groff: Это каталог
+cat: /etc/grub.d: Это каталог
+cat: /etc/gshadow: Отказано в доступе
+cat: /etc/gshadow-: Отказано в доступе
+cat: /etc/gss: Это каталог
+cat: /etc/gtk-2.0: Это каталог
+cat: /etc/gtk-3.0: Это каталог
+cat: /etc/hp: Это каталог
+cat: /etc/ifplugd: Это каталог
+cat: /etc/init: Это каталог
+cat: /etc/init.d: Это каталог
+cat: /etc/initramfs-tools: Это каталог
+cat: /etc/insserv.conf.d: Это каталог
+cat: /etc/iproute2: Это каталог
+cat: /etc/kernel: Это каталог
+cat: /etc/ldap: Это каталог
+cat: /etc/ld.so.conf.d: Это каталог
+cat: /etc/libblockdev: Это каталог
+cat: /etc/libnl-3: Это каталог
+cat: /etc/libpaper.d: Это каталог
+cat: /etc/libreoffice: Это каталог
+cat: /etc/logcheck: Это каталог
+cat: /etc/logrotate.d: Это каталог
+cat: /etc/mc: Это каталог
+cat: /etc/modprobe.d: Это каталог
+cat: /etc/modules-load.d: Это каталог
+cat: /etc/mysql: Это каталог
+cat: /etc/netplan: Это каталог
+cat: /etc/network: Это каталог
+cat: /etc/networkd-dispatcher: Это каталог
+cat: /etc/NetworkManager: Это каталог
+cat: /etc/newt: Это каталог
+cat: /etc/openvpn: Это каталог
+cat: /etc/opt: Это каталог
+cat: /etc/PackageKit: Это каталог
+cat: /etc/pam.d: Это каталог
+cat: /etc/pcmcia: Это каталог
+cat: /etc/perl: Это каталог
+cat: /etc/pki: Это каталог
+cat: /etc/pm: Это каталог
+cat: /etc/polkit-1: Это каталог
+cat: /etc/ppp: Это каталог
+cat: /etc/profile.d: Это каталог
+cat: /etc/pulse: Это каталог
+cat: /etc/python3: Это каталог
+cat: /etc/python3.8: Это каталог
+cat: /etc/rc0.d: Это каталог
+cat: /etc/rc1.d: Это каталог
+cat: /etc/rc2.d: Это каталог
+cat: /etc/rc3.d: Это каталог
+cat: /etc/rc4.d: Это каталог
+cat: /etc/rc5.d: Это каталог
+cat: /etc/rc6.d: Это каталог
+cat: /etc/rcS.d: Это каталог
+cat: /etc/rsyslog.d: Это каталог
+cat: /etc/sane.d: Это каталог
+cat: /etc/security: Это каталог
+cat: /etc/selinux: Это каталог
+cat: /etc/sensors.d: Это каталог
+cat: /etc/sgml: Это каталог
+cat: /etc/shadow: Отказано в доступе
+cat: /etc/shadow-: Отказано в доступе
+cat: /etc/skel: Это каталог
+cat: /etc/snmp: Это каталог
+cat: /etc/speech-dispatcher: Это каталог
+cat: /etc/ssh: Это каталог
+cat: /etc/ssl: Это каталог
+cat: /etc/sudoers: Отказано в доступе
+cat: /etc/sudoers.d: Это каталог
+cat: /etc/sysctl.d: Это каталог
+cat: /etc/systemd: Это каталог
+cat: /etc/terminfo: Это каталог
+cat: /etc/thermald: Это каталог
+cat: /etc/thunderbird: Это каталог
+cat: /etc/tmpfiles.d: Это каталог
+cat: /etc/ubuntu-advantage: Это каталог
+cat: /etc/udev: Это каталог
+cat: /etc/udisks2: Это каталог
+cat: /etc/ufw: Это каталог
+cat: /etc/update-manager: Это каталог
+cat: /etc/update-motd.d: Это каталог
+cat: /etc/update-notifier: Это каталог
+cat: /etc/UPower: Это каталог
+cat: /etc/usb_modeswitch.d: Это каталог
+cat: /etc/vim: Это каталог
+cat: /etc/vmware-tools: Это каталог
+cat: /etc/vulkan: Это каталог
+cat: /etc/wpa_supplicant: Это каталог
+cat: /etc/X11: Это каталог
+cat: /etc/xdg: Это каталог
+cat: /etc/xml: Это каталог
+
+
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 868
+-rw-rw-r-- 1 eurich75 eurich75 391876 ноя 27 19:45  cat.log
+-rw-rw-r-- 1 eurich75 eurich75  22764 ноя 28 18:41  errors.log
+-rw-rw-r-- 1 eurich75 eurich75    403 ноя 24 17:44  eu_rca.pub
+-rw-rw-r-- 1 eurich75 eurich75     32 ноя 27 19:39  file1.txt
+-rw-rw-r-- 1 eurich75 eurich75 397567 ноя 27 19:52  full.log
+drwxrwxr-x 2 eurich75 team1      4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75   4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75    265 ноя 27 20:02  ls.txt
+-rw-rw-r-- 1 eurich75 eurich75   1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r-- 1 eurich75 eurich75     13 ноя 28 18:09  testfile.txt
+-rw-rw-r-- 1 user1    team1        26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75   1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ ls -l | cut -d " " -f 1
+итого
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+drwxrwxr-x
+drwxrwxr-x
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+eurich75@eurich75-VirtualBox:~$ ls -l | cut -d " " -f 1 | sort
+drwxrwxr-x
+drwxrwxr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+drwxr-xr-x
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+итого
+eurich75@eurich75-VirtualBox:~$ ls -l | cut -d " " -f 1 | sort | uniq
+drwxrwxr-x
+drwxr-xr-x
+-rw-rw-r--
+итого
+eurich75@eurich75-VirtualBox:~$ ls -l | cut -d " " -f 1 | sort | uniq | grep -v итого
+drwxrwxr-x
+drwxr-xr-x
+-rw-rw-r--
+
+
+eurich75@eurich75-VirtualBox:~$ sudo nano /etc/ssh/sshd_config
+eurich75@eurich75-VirtualBox:~$ ps -ef | grep sshd
+eurich75    2936    2331  0 19:14 pts/0    00:00:00 grep --color=auto sshd
+eurich75@eurich75-VirtualBox:~$ sudo systemctl restart sshd
+Failed to restart sshd.service: Unit sshd.service not found. ???
+eurich75@eurich75-VirtualBox:~$ sudo systemctl reload sshd
+Failed to reload sshd.service: Unit sshd.service not found.  ???
+eurich75@eurich75-VirtualBox:~$ sudo nano /etc/ssh/sshd_config
+eurich75@eurich75-VirtualBox:~$ ps -ef | grep sshd
+eurich75    2958    2331  0 19:20 pts/0    00:00:00 grep --color=auto sshd
+
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      full.log      'nano file1.txt'   Видео         Музыка
+ errors.log   lesson3        testfile.txt      Документы     Общедоступные
+ eu_rca.pub   lesson3_copy   text2.txt         Загрузки     'Рабочий стол'
+ file1.txt    ls.txt        'vim file1.txt'    Изображения   Шаблоны
+eurich75@eurich75-VirtualBox:~$ cat > text.txt
+Hello!
+World!
+eurich75@eurich75-VirtualBox:~$ cat text.txt
+Hello!
+World!
+
+
+eurich75@eurich75-VirtualBox:~$ mc
+
+eurich75@eurich75-VirtualBox:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 17:44 ?        00:00:05 /sbin/init splash
+root           2       0  0 17:44 ?        00:00:00 [kthreadd]
+root           3       2  0 17:44 ?        00:00:00 [rcu_gp]
+root           4       2  0 17:44 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 17:44 ?        00:00:00 [kworker/0:0H-kblockd]
+root           9       2  0 17:44 ?        00:00:00 [mm_percpu_wq]
+root          10       2  0 17:44 ?        00:00:00 [ksoftirqd/0]
+root          11       2  0 17:44 ?        00:00:01 [rcu_sched]
+root          12       2  0 17:44 ?        00:00:00 [migration/0]
+root          13       2  0 17:44 ?        00:00:00 [idle_inject/0]
+root          14       2  0 17:44 ?        00:00:00 [cpuhp/0]
+root          15       2  0 17:44 ?        00:00:00 [kdevtmpfs]
+root          16       2  0 17:44 ?        00:00:00 [netns]
+root          17       2  0 17:44 ?        00:00:00 [rcu_tasks_kthre]
+root          18       2  0 17:44 ?        00:00:00 [kauditd]
+root          19       2  0 17:44 ?        00:00:00 [khungtaskd]
+root          20       2  0 17:44 ?        00:00:00 [oom_reaper]
+root          21       2  0 17:44 ?        00:00:00 [writeback]
+root          22       2  0 17:44 ?        00:00:00 [kcompactd0]
+root          23       2  0 17:44 ?        00:00:00 [ksmd]
+root          24       2  0 17:44 ?        00:00:00 [khugepaged]
+root          70       2  0 17:44 ?        00:00:00 [kintegrityd]
+root          71       2  0 17:44 ?        00:00:00 [kblockd]
+root          72       2  0 17:44 ?        00:00:00 [blkcg_punt_bio]
+root          73       2  0 17:44 ?        00:00:00 [tpm_dev_wq]
+root          74       2  0 17:44 ?        00:00:00 [ata_sff]
+root          75       2  0 17:44 ?        00:00:00 [md]
+root          76       2  0 17:44 ?        00:00:00 [edac-poller]
+root          77       2  0 17:44 ?        00:00:00 [devfreq_wq]
+root          78       2  0 17:44 ?        00:00:00 [watchdogd]
+root          81       2  0 17:44 ?        00:00:00 [kswapd0]
+root          82       2  0 17:44 ?        00:00:00 [ecryptfs-kthrea]
+root          84       2  0 17:44 ?        00:00:00 [kthrotld]
+root          85       2  0 17:44 ?        00:00:00 [acpi_thermal_pm]
+root          86       2  0 17:44 ?        00:00:00 [scsi_eh_0]
+root          87       2  0 17:44 ?        00:00:00 [scsi_tmf_0]
+root          88       2  0 17:44 ?        00:00:00 [scsi_eh_1]
+root          89       2  0 17:44 ?        00:00:00 [scsi_tmf_1]
+root          91       2  0 17:44 ?        00:00:00 [vfio-irqfd-clea]
+root          93       2  0 17:44 ?        00:00:00 [ipv6_addrconf]
+root         102       2  0 17:44 ?        00:00:00 [kstrp]
+root         105       2  0 17:44 ?        00:00:00 [kworker/u3:0]
+root         118       2  0 17:44 ?        00:00:00 [charger_manager]
+root         158       2  0 17:44 ?        00:00:00 [scsi_eh_2]
+root         161       2  0 17:44 ?        00:00:00 [scsi_tmf_2]
+root         162       2  0 17:44 ?        00:00:01 [kworker/0:1H-kblockd]
+root         191       2  0 17:44 ?        00:00:00 [jbd2/sda1-8]
+root         192       2  0 17:44 ?        00:00:00 [ext4-rsv-conver]
+root         231       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-journald
+root         255       2  0 17:44 ?        00:00:00 [irq/18-vmwgfx]
+root         256       2  0 17:44 ?        00:00:00 [ttm_swap]
+root         263       2  0 17:44 ?        00:00:00 [loop0]
+root         264       2  0 17:44 ?        00:00:00 [loop1]
+root         266       2  0 17:44 ?        00:00:00 [loop2]
+root         268       2  0 17:44 ?        00:00:00 [loop3]
+root         270       2  0 17:44 ?        00:00:00 [loop4]
+root         272       2  0 17:44 ?        00:00:00 [loop5]
+root         277       1  0 17:44 ?        00:00:02 /lib/systemd/systemd-udevd
+root         278       2  0 17:44 ?        00:00:00 [loop7]
+root         279       2  0 17:44 ?        00:00:00 [loop8]
+systemd+     297       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-resolved
+root         348       2  0 17:44 ?        00:00:00 [iprt-VBoxWQueue]
+root         369       2  0 17:44 ?        00:00:00 [cryptd]
+systemd+     416       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-timesyncd
+root         445       1  0 17:44 ?        00:00:00 /usr/lib/accountsservice/accoun
+root         446       1  0 17:44 ?        00:00:00 /usr/sbin/acpid
+avahi        449       1  0 17:44 ?        00:00:00 avahi-daemon: running [eurich75
+root         450       1  0 17:44 ?        00:00:00 /usr/sbin/cron -f
+message+     452       1  0 17:44 ?        00:00:02 /usr/bin/dbus-daemon --system -
+root         453       1  0 17:44 ?        00:00:04 /usr/sbin/NetworkManager --no-d
+root         461       1  0 17:44 ?        00:00:00 /usr/bin/python3 /usr/bin/netwo
+root         462       1  0 17:44 ?        00:00:00 /usr/lib/policykit-1/polkitd --
+syslog       466       1  0 17:44 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         468       1  0 17:44 ?        00:00:22 /usr/lib/snapd/snapd
+root         469       1  0 17:44 ?        00:00:00 /usr/libexec/switcheroo-control
+root         486       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-logind
+root         488       1  0 17:44 ?        00:00:00 /usr/lib/udisks2/udisksd
+root         490       1  0 17:44 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /
+avahi        498     449  0 17:44 ?        00:00:00 avahi-daemon: chroot helper
+root         576       1  0 17:45 ?        00:00:00 /usr/sbin/cupsd -l
+root         593       1  0 17:45 ?        00:00:00 /usr/sbin/cups-browsed
+root         602       1  0 17:45 ?        00:00:00 /usr/sbin/ModemManager --filter
+root         608       1  0 17:45 ?        00:00:00 /usr/bin/python3 /usr/share/una
+whoopsie     643       1  0 17:45 ?        00:00:00 /usr/bin/whoopsie -f
+lp           646     576  0 17:45 ?        00:00:00 /usr/lib/cups/notifier/dbus dbu
+kernoops     647       1  0 17:45 ?        00:00:00 /usr/sbin/kerneloops --test
+kernoops     649       1  0 17:45 ?        00:00:00 /usr/sbin/kerneloops
+colord       659       1  0 17:45 ?        00:00:00 /usr/libexec/colord
+root         828       2  0 17:46 ?        00:00:00 [loop9]
+root         902       2  0 17:46 ?        00:00:00 [loop10]
+root        1149       1  0 17:47 ?        00:00:00 VBoxClient --vmsvga
+root        1150    1149  0 17:47 ?        00:00:00 VBoxClient --vmsvga
+root        1185       1  0 17:47 ?        00:00:00 /usr/sbin/gdm3
+root        1190       1  0 17:47 ?        00:00:01 /usr/sbin/VBoxService --pidfile
+root        1202    1185  0 17:47 ?        00:00:00 gdm-session-worker [pam/gdm-aut
+eurich75    1207       1  0 17:47 ?        00:00:01 /lib/systemd/systemd --user
+eurich75    1208    1207  0 17:47 ?        00:00:00 (sd-pam)
+eurich75    1213    1207  0 17:47 ?        00:00:01 /usr/bin/pulseaudio --daemonize
+eurich75    1215    1207  0 17:47 ?        00:00:00 /usr/libexec/tracker-miner-fs
+eurich75    1218       1  0 17:47 ?        00:00:00 /usr/bin/gnome-keyring-daemon -
+eurich75    1222    1202  0 17:47 tty2     00:00:00 /usr/lib/gdm3/gdm-x-session --r
+eurich75    1224    1222  1 17:47 tty2     00:01:03 /usr/lib/xorg/Xorg vt2 -display
+rtkit       1225       1  0 17:47 ?        00:00:00 /usr/libexec/rtkit-daemon
+eurich75    1229    1207  0 17:47 ?        00:00:01 /usr/bin/dbus-daemon --session
+eurich75    1233    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd
+eurich75    1238    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/us
+eurich75    1249    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-udisks2-volum
+eurich75    1256    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volum
+eurich75    1260    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-goa-volume-mo
+eurich75    1274    1207  0 17:47 ?        00:00:00 /usr/libexec/goa-daemon
+eurich75    1289    1207  0 17:47 ?        00:00:00 /usr/libexec/goa-identity-servi
+eurich75    1291    1222  0 17:47 tty2     00:00:00 /usr/libexec/gnome-session-bina
+eurich75    1300    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-mo
+eurich75    1307    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-afc-volume-mo
+root        1319       1  0 17:47 ?        00:00:00 /usr/lib/upower/upowerd
+eurich75    1333    1207  0 17:47 ?        00:00:00 /usr/bin/gnome-keyring-daemon -
+eurich75    1414       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+eurich75    1415    1414  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+eurich75    1424       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --display
+eurich75    1425    1424  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --display
+eurich75    1431       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --seamless
+eurich75    1432    1431  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --seamless
+eurich75    1437       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --draganddr
+eurich75    1438    1437  0 17:47 ?        00:00:18 /usr/bin/VBoxClient --draganddr
+eurich75    1451    1291  0 17:47 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/im-
+eurich75    1480    1207  0 17:47 ?        00:00:00 /usr/libexec/at-spi-bus-launche
+eurich75    1485    1480  0 17:47 ?        00:00:00 /usr/bin/dbus-daemon --config-f
+eurich75    1496    1207  0 17:47 ?        00:00:00 /usr/libexec/gnome-session-ctl
+eurich75    1497    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd-metadata
+eurich75    1505    1207  0 17:47 ?        00:00:00 /usr/libexec/gnome-session-bina
+eurich75    1520    1207  2 17:47 ?        00:02:17 /usr/bin/gnome-shell
+eurich75    1539    1520  0 17:48 ?        00:00:00 ibus-daemon --panel disable --x
+eurich75    1543    1539  0 17:48 ?        00:00:00 /usr/libexec/ibus-memconf
+eurich75    1544    1539  0 17:48 ?        00:00:04 /usr/libexec/ibus-extension-gtk
+eurich75    1548    1207  0 17:48 ?        00:00:00 /usr/libexec/ibus-x11 --kill-da
+eurich75    1553    1207  0 17:48 ?        00:00:00 /usr/libexec/ibus-portal
+eurich75    1560    1207  0 17:48 ?        00:00:00 /usr/libexec/at-spi2-registryd
+eurich75    1564    1207  0 17:48 ?        00:00:00 /usr/libexec/xdg-permission-sto
+eurich75    1566    1207  0 17:48 ?        00:00:00 /usr/libexec/gnome-shell-calend
+eurich75    1577    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-source-r
+eurich75    1607    1207  0 17:48 ?        00:00:00 /usr/libexec/dconf-service
+eurich75    1614    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-calendar
+eurich75    1618    1207  0 17:48 ?        00:00:00 /usr/bin/gjs /usr/share/gnome-s
+eurich75    1632    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-a11y-settings
+eurich75    1634    1207  0 17:48 ?        00:00:01 /usr/libexec/gsd-color
+eurich75    1635    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-datetime
+eurich75    1637    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-housekeeping
+eurich75    1638    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-keyboard
+eurich75    1639    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-media-keys
+eurich75    1641    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-power
+eurich75    1642    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-print-notifica
+eurich75    1643    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-rfkill
+eurich75    1644    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-screensaver-pr
+eurich75    1646    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-sharing
+eurich75    1647    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-smartcard
+eurich75    1648    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-sound
+eurich75    1649    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-usb-protection
+eurich75    1653    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-wacom
+eurich75    1655    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-wwan
+eurich75    1657    1207  0 17:48 ?        00:00:01 /usr/libexec/gsd-xsettings
+eurich75    1670    1505  0 17:48 ?        00:00:00 /usr/libexec/gsd-disk-utility-n
+eurich75    1703    1539  0 17:48 ?        00:00:00 /usr/libexec/ibus-engine-simple
+eurich75    1706    1505  0 17:48 ?        00:00:01 /usr/libexec/evolution-data-ser
+eurich75    1726    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-printer
+eurich75    1757    1233  0 17:48 ?        00:00:00 /usr/libexec/gvfsd-trash --spaw
+eurich75    1829    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-addressb
+eurich75    1967    1505  0 17:49 ?        00:00:01 update-notifier
+eurich75    2323    1207  0 18:07 ?        00:00:33 /usr/libexec/gnome-terminal-ser
+eurich75    2331    2323  0 18:07 pts/0    00:00:00 bash
+root        2472       1  0 18:21 ?        00:00:01 /usr/libexec/fwupd/fwupd
+root        2715       2  0 18:43 ?        00:00:00 [kworker/u2:2-events_unbound]
+root        2732       2  0 18:49 ?        00:00:00 [kworker/u2:0-events_power_effi
+root        2769       2  0 18:56 ?        00:00:00 [kworker/0:1-cgroup_destroy]
+root        2831       2  0 19:03 ?        00:00:01 [kworker/0:3-events]
+eurich75    3027    2331  0 19:29 pts/0    00:00:00 mc
+eurich75    3029    3027  0 19:29 pts/1    00:00:00 bash -rcfile .bashrc
+eurich75    3036    3029  0 19:29 pts/1    00:00:00 ps -ef
+eurich75@eurich75-VirtualBox:~$ kill -9 3027Убито
+eurich75@eurich75-VirtualBox:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 17:44 ?        00:00:05 /sbin/init splash
+root           2       0  0 17:44 ?        00:00:00 [kthreadd]
+root           3       2  0 17:44 ?        00:00:00 [rcu_gp]
+root           4       2  0 17:44 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 17:44 ?        00:00:00 [kworker/0:0H-kblockd]
+root           9       2  0 17:44 ?        00:00:00 [mm_percpu_wq]
+root          10       2  0 17:44 ?        00:00:00 [ksoftirqd/0]
+root          11       2  0 17:44 ?        00:00:01 [rcu_sched]
+root          12       2  0 17:44 ?        00:00:00 [migration/0]
+root          13       2  0 17:44 ?        00:00:00 [idle_inject/0]
+root          14       2  0 17:44 ?        00:00:00 [cpuhp/0]
+root          15       2  0 17:44 ?        00:00:00 [kdevtmpfs]
+root          16       2  0 17:44 ?        00:00:00 [netns]
+root          17       2  0 17:44 ?        00:00:00 [rcu_tasks_kthre]
+root          18       2  0 17:44 ?        00:00:00 [kauditd]
+root          19       2  0 17:44 ?        00:00:00 [khungtaskd]
+root          20       2  0 17:44 ?        00:00:00 [oom_reaper]
+root          21       2  0 17:44 ?        00:00:00 [writeback]
+root          22       2  0 17:44 ?        00:00:00 [kcompactd0]
+root          23       2  0 17:44 ?        00:00:00 [ksmd]
+root          24       2  0 17:44 ?        00:00:00 [khugepaged]
+root          70       2  0 17:44 ?        00:00:00 [kintegrityd]
+root          71       2  0 17:44 ?        00:00:00 [kblockd]
+root          72       2  0 17:44 ?        00:00:00 [blkcg_punt_bio]
+root          73       2  0 17:44 ?        00:00:00 [tpm_dev_wq]
+root          74       2  0 17:44 ?        00:00:00 [ata_sff]
+root          75       2  0 17:44 ?        00:00:00 [md]
+root          76       2  0 17:44 ?        00:00:00 [edac-poller]
+root          77       2  0 17:44 ?        00:00:00 [devfreq_wq]
+root          78       2  0 17:44 ?        00:00:00 [watchdogd]
+root          81       2  0 17:44 ?        00:00:00 [kswapd0]
+root          82       2  0 17:44 ?        00:00:00 [ecryptfs-kthrea]
+root          84       2  0 17:44 ?        00:00:00 [kthrotld]
+root          85       2  0 17:44 ?        00:00:00 [acpi_thermal_pm]
+root          86       2  0 17:44 ?        00:00:00 [scsi_eh_0]
+root          87       2  0 17:44 ?        00:00:00 [scsi_tmf_0]
+root          88       2  0 17:44 ?        00:00:00 [scsi_eh_1]
+root          89       2  0 17:44 ?        00:00:00 [scsi_tmf_1]
+root          91       2  0 17:44 ?        00:00:00 [vfio-irqfd-clea]
+root          93       2  0 17:44 ?        00:00:00 [ipv6_addrconf]
+root         102       2  0 17:44 ?        00:00:00 [kstrp]
+root         105       2  0 17:44 ?        00:00:00 [kworker/u3:0]
+root         118       2  0 17:44 ?        00:00:00 [charger_manager]
+root         158       2  0 17:44 ?        00:00:00 [scsi_eh_2]
+root         161       2  0 17:44 ?        00:00:00 [scsi_tmf_2]
+root         162       2  0 17:44 ?        00:00:01 [kworker/0:1H-kblockd]
+root         191       2  0 17:44 ?        00:00:00 [jbd2/sda1-8]
+root         192       2  0 17:44 ?        00:00:00 [ext4-rsv-conver]
+root         231       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-journald
+root         255       2  0 17:44 ?        00:00:00 [irq/18-vmwgfx]
+root         256       2  0 17:44 ?        00:00:00 [ttm_swap]
+root         263       2  0 17:44 ?        00:00:00 [loop0]
+root         264       2  0 17:44 ?        00:00:00 [loop1]
+root         266       2  0 17:44 ?        00:00:00 [loop2]
+root         268       2  0 17:44 ?        00:00:00 [loop3]
+root         270       2  0 17:44 ?        00:00:00 [loop4]
+root         272       2  0 17:44 ?        00:00:00 [loop5]
+root         277       1  0 17:44 ?        00:00:02 /lib/systemd/systemd-udevd
+root         278       2  0 17:44 ?        00:00:00 [loop7]
+root         279       2  0 17:44 ?        00:00:00 [loop8]
+systemd+     297       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-resolved
+root         348       2  0 17:44 ?        00:00:00 [iprt-VBoxWQueue]
+root         369       2  0 17:44 ?        00:00:00 [cryptd]
+systemd+     416       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-timesyncd
+root         445       1  0 17:44 ?        00:00:00 /usr/lib/accountsservice/accoun
+root         446       1  0 17:44 ?        00:00:00 /usr/sbin/acpid
+avahi        449       1  0 17:44 ?        00:00:00 avahi-daemon: running [eurich75
+root         450       1  0 17:44 ?        00:00:00 /usr/sbin/cron -f
+message+     452       1  0 17:44 ?        00:00:02 /usr/bin/dbus-daemon --system -
+root         453       1  0 17:44 ?        00:00:04 /usr/sbin/NetworkManager --no-d
+root         461       1  0 17:44 ?        00:00:00 /usr/bin/python3 /usr/bin/netwo
+root         462       1  0 17:44 ?        00:00:00 /usr/lib/policykit-1/polkitd --
+syslog       466       1  0 17:44 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         468       1  0 17:44 ?        00:00:22 /usr/lib/snapd/snapd
+root         469       1  0 17:44 ?        00:00:00 /usr/libexec/switcheroo-control
+root         486       1  0 17:44 ?        00:00:00 /lib/systemd/systemd-logind
+root         488       1  0 17:44 ?        00:00:00 /usr/lib/udisks2/udisksd
+root         490       1  0 17:44 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /
+avahi        498     449  0 17:44 ?        00:00:00 avahi-daemon: chroot helper
+root         576       1  0 17:45 ?        00:00:00 /usr/sbin/cupsd -l
+root         593       1  0 17:45 ?        00:00:00 /usr/sbin/cups-browsed
+root         602       1  0 17:45 ?        00:00:00 /usr/sbin/ModemManager --filter
+root         608       1  0 17:45 ?        00:00:00 /usr/bin/python3 /usr/share/una
+whoopsie     643       1  0 17:45 ?        00:00:00 /usr/bin/whoopsie -f
+lp           646     576  0 17:45 ?        00:00:00 /usr/lib/cups/notifier/dbus dbu
+kernoops     647       1  0 17:45 ?        00:00:00 /usr/sbin/kerneloops --test
+kernoops     649       1  0 17:45 ?        00:00:00 /usr/sbin/kerneloops
+colord       659       1  0 17:45 ?        00:00:00 /usr/libexec/colord
+root         828       2  0 17:46 ?        00:00:00 [loop9]
+root         902       2  0 17:46 ?        00:00:00 [loop10]
+root        1149       1  0 17:47 ?        00:00:00 VBoxClient --vmsvga
+root        1150    1149  0 17:47 ?        00:00:00 VBoxClient --vmsvga
+root        1185       1  0 17:47 ?        00:00:00 /usr/sbin/gdm3
+root        1190       1  0 17:47 ?        00:00:01 /usr/sbin/VBoxService --pidfile
+root        1202    1185  0 17:47 ?        00:00:00 gdm-session-worker [pam/gdm-aut
+eurich75    1207       1  0 17:47 ?        00:00:01 /lib/systemd/systemd --user
+eurich75    1208    1207  0 17:47 ?        00:00:00 (sd-pam)
+eurich75    1213    1207  0 17:47 ?        00:00:01 /usr/bin/pulseaudio --daemonize
+eurich75    1215    1207  0 17:47 ?        00:00:00 /usr/libexec/tracker-miner-fs
+eurich75    1218       1  0 17:47 ?        00:00:00 /usr/bin/gnome-keyring-daemon -
+eurich75    1222    1202  0 17:47 tty2     00:00:00 /usr/lib/gdm3/gdm-x-session --r
+eurich75    1224    1222  1 17:47 tty2     00:01:03 /usr/lib/xorg/Xorg vt2 -display
+rtkit       1225       1  0 17:47 ?        00:00:00 /usr/libexec/rtkit-daemon
+eurich75    1229    1207  0 17:47 ?        00:00:01 /usr/bin/dbus-daemon --session
+eurich75    1233    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd
+eurich75    1238    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/us
+eurich75    1249    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-udisks2-volum
+eurich75    1256    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volum
+eurich75    1260    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-goa-volume-mo
+eurich75    1274    1207  0 17:47 ?        00:00:00 /usr/libexec/goa-daemon
+eurich75    1289    1207  0 17:47 ?        00:00:00 /usr/libexec/goa-identity-servi
+eurich75    1291    1222  0 17:47 tty2     00:00:00 /usr/libexec/gnome-session-bina
+eurich75    1300    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-mo
+eurich75    1307    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfs-afc-volume-mo
+root        1319       1  0 17:47 ?        00:00:00 /usr/lib/upower/upowerd
+eurich75    1333    1207  0 17:47 ?        00:00:00 /usr/bin/gnome-keyring-daemon -
+eurich75    1414       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+eurich75    1415    1414  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+eurich75    1424       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --display
+eurich75    1425    1424  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --display
+eurich75    1431       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --seamless
+eurich75    1432    1431  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --seamless
+eurich75    1437       1  0 17:47 ?        00:00:00 /usr/bin/VBoxClient --draganddr
+eurich75    1438    1437  0 17:47 ?        00:00:18 /usr/bin/VBoxClient --draganddr
+eurich75    1451    1291  0 17:47 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/im-
+eurich75    1480    1207  0 17:47 ?        00:00:00 /usr/libexec/at-spi-bus-launche
+eurich75    1485    1480  0 17:47 ?        00:00:00 /usr/bin/dbus-daemon --config-f
+eurich75    1496    1207  0 17:47 ?        00:00:00 /usr/libexec/gnome-session-ctl
+eurich75    1497    1207  0 17:47 ?        00:00:00 /usr/libexec/gvfsd-metadata
+eurich75    1505    1207  0 17:47 ?        00:00:00 /usr/libexec/gnome-session-bina
+eurich75    1520    1207  2 17:47 ?        00:02:17 /usr/bin/gnome-shell
+eurich75    1539    1520  0 17:48 ?        00:00:00 ibus-daemon --panel disable --x
+eurich75    1543    1539  0 17:48 ?        00:00:00 /usr/libexec/ibus-memconf
+eurich75    1544    1539  0 17:48 ?        00:00:04 /usr/libexec/ibus-extension-gtk
+eurich75    1548    1207  0 17:48 ?        00:00:00 /usr/libexec/ibus-x11 --kill-da
+eurich75    1553    1207  0 17:48 ?        00:00:00 /usr/libexec/ibus-portal
+eurich75    1560    1207  0 17:48 ?        00:00:00 /usr/libexec/at-spi2-registryd
+eurich75    1564    1207  0 17:48 ?        00:00:00 /usr/libexec/xdg-permission-sto
+eurich75    1566    1207  0 17:48 ?        00:00:00 /usr/libexec/gnome-shell-calend
+eurich75    1577    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-source-r
+eurich75    1607    1207  0 17:48 ?        00:00:00 /usr/libexec/dconf-service
+eurich75    1614    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-calendar
+eurich75    1618    1207  0 17:48 ?        00:00:00 /usr/bin/gjs /usr/share/gnome-s
+eurich75    1632    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-a11y-settings
+eurich75    1634    1207  0 17:48 ?        00:00:01 /usr/libexec/gsd-color
+eurich75    1635    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-datetime
+eurich75    1637    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-housekeeping
+eurich75    1638    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-keyboard
+eurich75    1639    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-media-keys
+eurich75    1641    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-power
+eurich75    1642    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-print-notifica
+eurich75    1643    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-rfkill
+eurich75    1644    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-screensaver-pr
+eurich75    1646    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-sharing
+eurich75    1647    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-smartcard
+eurich75    1648    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-sound
+eurich75    1649    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-usb-protection
+eurich75    1653    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-wacom
+eurich75    1655    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-wwan
+eurich75    1657    1207  0 17:48 ?        00:00:01 /usr/libexec/gsd-xsettings
+eurich75    1670    1505  0 17:48 ?        00:00:00 /usr/libexec/gsd-disk-utility-n
+eurich75    1703    1539  0 17:48 ?        00:00:00 /usr/libexec/ibus-engine-simple
+eurich75    1706    1505  0 17:48 ?        00:00:01 /usr/libexec/evolution-data-ser
+eurich75    1726    1207  0 17:48 ?        00:00:00 /usr/libexec/gsd-printer
+eurich75    1757    1233  0 17:48 ?        00:00:00 /usr/libexec/gvfsd-trash --spaw
+eurich75    1829    1207  0 17:48 ?        00:00:00 /usr/libexec/evolution-addressb
+eurich75    1967    1505  0 17:49 ?        00:00:01 update-notifier
+eurich75    2323    1207  0 18:07 ?        00:00:33 /usr/libexec/gnome-terminal-ser
+eurich75    2331    2323  0 18:07 pts/0    00:00:00 bash
+root        2472       1  0 18:21 ?        00:00:01 /usr/libexec/fwupd/fwupd
+root        2715       2  0 18:43 ?        00:00:00 [kworker/u2:2-events_unbound]
+root        2732       2  0 18:49 ?        00:00:00 [kworker/u2:0-events_power_effi
+root        2769       2  0 18:56 ?        00:00:00 [kworker/0:1-cgroup_destroy]
+root        2831       2  0 19:03 ?        00:00:01 [kworker/0:3-events]
+eurich75    3040    2331  0 19:30 pts/0    00:00:00 ps -ef
+eurich75@eurich75-VirtualBox:~$
