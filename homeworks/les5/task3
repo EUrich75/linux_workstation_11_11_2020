@@ -1,0 +1,26 @@
+3. Создать два произвольных файла. Первому присвоить права на чтение и
+запись для владельца и группы, только на чтение — для всех. Второму
+присвоить права на чтение и запись только для владельца. Сделать это в
+численном и символьном виде.
+
+eurich75@eurich75-VirtualBox:~$ touch doc1.txt
+eurich75@eurich75-VirtualBox:~$ touch doc2.txt
+eurich75@eurich75-VirtualBox:~$ ls -l | grep doc
+-rw-rw-r-- 1 eurich75 eurich75      0 дек  2 11:07 doc1.txt
+-rw-rw-r-- 1 eurich75 eurich75      0 дек  2 11:07 doc2.txt
+eurich75@eurich75-VirtualBox:~$ chmod ug=rw,o=r doc1.txt
+eurich75@eurich75-VirtualBox:~$ chmod u=rw,go= doc2.txt
+eurich75@eurich75-VirtualBox:~$ ls -l | grep doc
+-rw-rw-r-- 1 eurich75 eurich75      0 дек  2 11:07 doc1.txt
+-rw------- 1 eurich75 eurich75      0 дек  2 11:07 doc2.txt
+eurich75@eurich75-VirtualBox:~$ chmod 0 doc*
+eurich75@eurich75-VirtualBox:~$ ls -l | grep doc
+---------- 1 eurich75 eurich75      0 дек  2 11:07 doc1.txt
+---------- 1 eurich75 eurich75      0 дек  2 11:07 doc2.txt
+eurich75@eurich75-VirtualBox:~$ chmod 664 doc1.tx
+chmod: невозможно получить доступ к 'doc1.tx': Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~$ chmod 664 doc1.txt
+eurich75@eurich75-VirtualBox:~$ chmod 600 doc2.txt
+eurich75@eurich75-VirtualBox:~$ ls -l | grep doc
+-rw-rw-r-- 1 eurich75 eurich75      0 дек  2 11:07 doc1.txt
+-rw------- 1 eurich75 eurich75      0 дек  2 11:07 doc2.txt

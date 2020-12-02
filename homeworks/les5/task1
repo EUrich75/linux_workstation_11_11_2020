@@ -1,0 +1,138 @@
+1. Создать файл file1 и наполнить его произвольным содержимым.
+Скопировать его в file2. Создать символическую ссылку file3 на file1.
+Создать жёсткую ссылку file4 на file1. Посмотреть, какие inode у файлов.
+Удалить file1. Что стало с остальными созданными файлами? Попробовать
+вывести их на экран.
+
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      full.log       ls.txt            text2.txt        Видео       Изображения    'Рабочий стол'
+ errors.log   lesson3       'nano file1.txt'   text.txt         Документы   Музыка          Шаблоны
+ eu_rca.pub   lesson3_copy   testfile.txt     'vim file1.txt'   Загрузки    Общедоступные
+eurich75@eurich75-VirtualBox:~$ echo 'First file' > file1
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      file1      lesson3_copy      testfile.txt  'vim file1.txt'   Загрузки      Общедоступные
+ errors.log   full.log   ls.txt            text2.txt      Видео            Изображения  'Рабочий стол'
+ eu_rca.pub   lesson3   'nano file1.txt'   text.txt       Документы        Музыка        Шаблоны
+eurich75@eurich75-VirtualBox:~$ cat fale1
+cat: fale1: Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~$ cat file1
+First file
+eurich75@eurich75-VirtualBox:~$ cp file1 file2
+eurich75@eurich75-VirtualBox:~$ cat file2
+First file
+eurich75@eurich75-VirtualBox:~$ ls -lia
+итого 952
+439854 drwxr-xr-x 17 eurich75 eurich75   4096 дек  2 10:51  .
+390914 drwxr-xr-x  5 root     root       4096 ноя 27 18:44  ..
+391375 -rw-------  1 eurich75 eurich75   3102 ноя 28 19:35  .bash_history
+434544 -rw-r--r--  1 eurich75 eurich75    220 ноя 17 11:51  .bash_logout
+403531 -rw-r--r--  1 eurich75 eurich75   3771 ноя 17 11:51  .bashrc
+391023 drwx------ 14 eurich75 eurich75   4096 ноя 21 18:12  .cache
+395295 -rw-rw-r--  1 eurich75 eurich75 391876 ноя 27 19:45  cat.log
+436228 drwx------ 17 eurich75 eurich75   4096 ноя 27 20:14  .config
+395297 -rw-rw-r--  1 eurich75 eurich75  22764 ноя 28 18:41  errors.log
+392236 -rw-rw-r--  1 eurich75 eurich75    403 дек  2 10:04  eu_rca.pub
+391001 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:48  file1
+395296 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:51  file2
+395302 -rw-rw-r--  1 eurich75 eurich75 397567 ноя 27 19:52  full.log
+436252 drwx------  3 eurich75 eurich75   4096 ноя 17 13:58  .gnupg
+395053 drwxrwxr-x  2 eurich75 team1      4096 ноя 21 17:52  lesson3
+395062 drwxrwxr-x  2 eurich75 eurich75   4096 ноя 21 17:54  lesson3_copy
+436231 drwx------  3 eurich75 eurich75   4096 ноя 17 13:58  .local
+395303 -rw-rw-r--  1 eurich75 eurich75    265 ноя 27 20:02  ls.txt
+395065 -rw-rw-r--  1 eurich75 eurich75   1587 ноя 21 18:16 'nano file1.txt'
+403532 -rw-r--r--  1 eurich75 eurich75    807 ноя 17 11:51  .profile
+393442 drwxrwxr-x  2 eurich75 eurich75   4096 ноя 24 17:48  .ssh
+436304 -rw-r--r--  1 eurich75 eurich75      0 ноя 17 16:39  .sudo_as_admin_successful
+393440 -rw-rw-r--  1 eurich75 eurich75     13 ноя 28 18:09  testfile.txt
+395058 -rw-rw-r--  1 user1    team1        26 ноя 19 18:40  text2.txt
+394981 -rw-rw-r--  1 eurich75 eurich75     14 ноя 28 19:24  text.txt
+392237 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-clipboard.pid
+420842 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-display.pid
+420844 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-draganddrop.pid
+420843 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-seamless.pid
+395045 -rw-rw-r--  1 eurich75 eurich75   1720 ноя 21 18:05 'vim file1.txt'
+395047 -rw-------  1 eurich75 eurich75  12464 ноя 21 18:05  .viminfo
+560147 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Видео
+560144 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Документы
+436272 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Загрузки
+560146 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 18:47  Изображения
+560145 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Музыка
+436274 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Общедоступные
+436271 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58 'Рабочий стол'
+436273 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ ln -s file1 file3
+eurich75@eurich75-VirtualBox:~$ ls -lia
+итого 952
+439854 drwxr-xr-x 17 eurich75 eurich75   4096 дек  2 10:52  .
+390914 drwxr-xr-x  5 root     root       4096 ноя 27 18:44  ..
+391375 -rw-------  1 eurich75 eurich75   3102 ноя 28 19:35  .bash_history
+434544 -rw-r--r--  1 eurich75 eurich75    220 ноя 17 11:51  .bash_logout
+403531 -rw-r--r--  1 eurich75 eurich75   3771 ноя 17 11:51  .bashrc
+391023 drwx------ 14 eurich75 eurich75   4096 ноя 21 18:12  .cache
+395295 -rw-rw-r--  1 eurich75 eurich75 391876 ноя 27 19:45  cat.log
+436228 drwx------ 17 eurich75 eurich75   4096 ноя 27 20:14  .config
+395297 -rw-rw-r--  1 eurich75 eurich75  22764 ноя 28 18:41  errors.log
+392236 -rw-rw-r--  1 eurich75 eurich75    403 дек  2 10:04  eu_rca.pub
+391001 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:48  file1
+395296 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:51  file2
+405877 lrwxrwxrwx  1 eurich75 eurich75      5 дек  2 10:52  file3 -> file1
+395302 -rw-rw-r--  1 eurich75 eurich75 397567 ноя 27 19:52  full.log
+436252 drwx------  3 eurich75 eurich75   4096 ноя 17 13:58  .gnupg
+395053 drwxrwxr-x  2 eurich75 team1      4096 ноя 21 17:52  lesson3
+395062 drwxrwxr-x  2 eurich75 eurich75   4096 ноя 21 17:54  lesson3_copy
+436231 drwx------  3 eurich75 eurich75   4096 ноя 17 13:58  .local
+395303 -rw-rw-r--  1 eurich75 eurich75    265 ноя 27 20:02  ls.txt
+395065 -rw-rw-r--  1 eurich75 eurich75   1587 ноя 21 18:16 'nano file1.txt'
+403532 -rw-r--r--  1 eurich75 eurich75    807 ноя 17 11:51  .profile
+393442 drwxrwxr-x  2 eurich75 eurich75   4096 ноя 24 17:48  .ssh
+436304 -rw-r--r--  1 eurich75 eurich75      0 ноя 17 16:39  .sudo_as_admin_successful
+393440 -rw-rw-r--  1 eurich75 eurich75     13 ноя 28 18:09  testfile.txt
+395058 -rw-rw-r--  1 user1    team1        26 ноя 19 18:40  text2.txt
+394981 -rw-rw-r--  1 eurich75 eurich75     14 ноя 28 19:24  text.txt
+392237 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-clipboard.pid
+420842 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-display.pid
+420844 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-draganddrop.pid
+420843 -rw-r-----  1 eurich75 eurich75      5 дек  2 10:07  .vboxclient-seamless.pid
+395045 -rw-rw-r--  1 eurich75 eurich75   1720 ноя 21 18:05 'vim file1.txt'
+395047 -rw-------  1 eurich75 eurich75  12464 ноя 21 18:05  .viminfo
+560147 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Видео
+560144 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Документы
+436272 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Загрузки
+560146 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 18:47  Изображения
+560145 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Музыка
+436274 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Общедоступные
+436271 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58 'Рабочий стол'
+436273 drwxr-xr-x  2 eurich75 eurich75   4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ ls -lia | grep file
+391001 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:48 file1
+395296 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:51 file2
+405877 lrwxrwxrwx  1 eurich75 eurich75      5 дек  2 10:52 file3 -> file1
+395065 -rw-rw-r--  1 eurich75 eurich75   1587 ноя 21 18:16 nano file1.txt
+403532 -rw-r--r--  1 eurich75 eurich75    807 ноя 17 11:51 .profile
+393440 -rw-rw-r--  1 eurich75 eurich75     13 ноя 28 18:09 testfile.txt
+395045 -rw-rw-r--  1 eurich75 eurich75   1720 ноя 21 18:05 vim file1.txt
+eurich75@eurich75-VirtualBox:~$ ln file1 file4
+eurich75@eurich75-VirtualBox:~$ ls -lia | grep file
+391001 -rw-rw-r--  2 eurich75 eurich75     11 дек  2 10:48 file1
+395296 -rw-rw-r--  1 eurich75 eurich75     11 дек  2 10:51 file2
+405877 lrwxrwxrwx  1 eurich75 eurich75      5 дек  2 10:52 file3 -> file1
+391001 -rw-rw-r--  2 eurich75 eurich75     11 дек  2 10:48 file4
+395065 -rw-rw-r--  1 eurich75 eurich75   1587 ноя 21 18:16 nano file1.txt
+403532 -rw-r--r--  1 eurich75 eurich75    807 ноя 17 11:51 .profile
+393440 -rw-rw-r--  1 eurich75 eurich75     13 ноя 28 18:09 testfile.txt
+395045 -rw-rw-r--  1 eurich75 eurich75   1720 ноя 21 18:05 vim file1.txt
+eurich75@eurich75-VirtualBox:~$ rm file1
+eurich75@eurich75-VirtualBox:~$ ls -li | grep file
+395296 -rw-rw-r-- 1 eurich75 eurich75     11 дек  2 10:51 file2
+405877 lrwxrwxrwx 1 eurich75 eurich75      5 дек  2 10:52 file3 -> file1
+391001 -rw-rw-r-- 1 eurich75 eurich75     11 дек  2 10:48 file4
+395065 -rw-rw-r-- 1 eurich75 eurich75   1587 ноя 21 18:16 nano file1.txt
+393440 -rw-rw-r-- 1 eurich75 eurich75     13 ноя 28 18:09 testfile.txt
+395045 -rw-rw-r-- 1 eurich75 eurich75   1720 ноя 21 18:05 vim file1.txt
+eurich75@eurich75-VirtualBox:~$ cat file2
+First file
+eurich75@eurich75-VirtualBox:~$ cat file3
+cat: file3: Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~$ cat file4
+First file
