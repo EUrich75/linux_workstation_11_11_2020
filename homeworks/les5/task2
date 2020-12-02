@@ -1,0 +1,57 @@
+2. Дать созданным файлам другие, произвольные имена. Создать новую
+символическую ссылку. Переместить ссылки в другую директорию.
+
+eurich75@eurich75-VirtualBox:~$ mv file2 file2_new
+eurich75@eurich75-VirtualBox:~$ mv file3 file3_new
+eurich75@eurich75-VirtualBox:~$ mv file4 file4_new
+eurich75@eurich75-VirtualBox:~$ ln -s file2_new file2_new.link
+eurich75@eurich75-VirtualBox:~$ ls
+ cat.log      file2_new.link   lesson3           testfile.txt     Видео         Музыка
+ errors.log   file3_new        lesson3_copy      text2.txt        Документы     Общедоступные
+ eu_rca.pub   file4_new        ls.txt            text.txt         Загрузки     'Рабочий стол'
+ file2_new    full.log        'nano file1.txt'  'vim file1.txt'   Изображения   Шаблоны
+eurich75@eurich75-VirtualBox:~$ mkdir task2
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 880
+-rw-rw-r-- 1 eurich75 eurich75 391876 ноя 27 19:45  cat.log
+-rw-rw-r-- 1 eurich75 eurich75  22764 ноя 28 18:41  errors.log
+-rw-rw-r-- 1 eurich75 eurich75    403 дек  2 10:04  eu_rca.pub
+-rw-rw-r-- 1 eurich75 eurich75     11 дек  2 10:51  file2_new
+lrwxrwxrwx 1 eurich75 eurich75      9 дек  2 10:57  file2_new.link -> file2_new
+lrwxrwxrwx 1 eurich75 eurich75      5 дек  2 10:52  file3_new -> file1
+-rw-rw-r-- 1 eurich75 eurich75     11 дек  2 10:48  file4_new
+-rw-rw-r-- 1 eurich75 eurich75 397567 ноя 27 19:52  full.log
+drwxrwxr-x 2 eurich75 team1      4096 ноя 21 17:52  lesson3
+drwxrwxr-x 2 eurich75 eurich75   4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r-- 1 eurich75 eurich75    265 ноя 27 20:02  ls.txt
+-rw-rw-r-- 1 eurich75 eurich75   1587 ноя 21 18:16 'nano file1.txt'
+drwxrwxr-x 2 eurich75 eurich75   4096 дек  2 10:58  task2
+-rw-rw-r-- 1 eurich75 eurich75     13 ноя 28 18:09  testfile.txt
+-rw-rw-r-- 1 user1    team1        26 ноя 19 18:40  text2.txt
+-rw-rw-r-- 1 eurich75 eurich75     14 ноя 28 19:24  text.txt
+-rw-rw-r-- 1 eurich75 eurich75   1720 ноя 21 18:05 'vim file1.txt'
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Видео
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Документы
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Загрузки
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 18:47  Изображения
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Музыка
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x 2 eurich75 eurich75   4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ mv file2_new.link task2
+eurich75@eurich75-VirtualBox:~$ mv file4_new task2
+eurich75@eurich75-VirtualBox:~$ ls -l ./task2/
+итого 4
+lrwxrwxrwx 1 eurich75 eurich75  9 дек  2 10:57 file2_new.link -> file2_new
+-rw-rw-r-- 1 eurich75 eurich75 11 дек  2 10:48 file4_new
+eurich75@eurich75-VirtualBox:~$ cat file2_new.link
+cat: file2_new.link: Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~$ cd task2/
+eurich75@eurich75-VirtualBox:~/task2$ cat file2_new.link
+cat: file2_new.link: Нет такого файла или каталога
+eurich75@eurich75-VirtualBox:~/task2$ cat file4_new
+First file
+eurich75@eurich75-VirtualBox:~/task2$ ls -l
+итого 4
+lrwxrwxrwx 1 eurich75 eurich75  9 дек  2 10:57 file2_new.link -> file2_new
+-rw-rw-r-- 1 eurich75 eurich75 11 дек  2 10:48 file4_new

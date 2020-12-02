@@ -1,0 +1,15 @@
+7. * Создать директорию, в которой есть несколько файлов. Сделать так,
+чтобы открыть файлы можно было, только зная имя файла, а через ls список
+файлов посмотреть было нельзя.
+
+eurich75@eurich75-VirtualBox:~/project$ mkdir noread
+eurich75@eurich75-VirtualBox:~/project$ ls -l
+итого 8
+drwxrwsr-x 2 eurich75 developer 4096 дек  2 16:36 noread
+drwxrwxr-t 2 eurich75 developer 4096 дек  2 16:34 shared
+eurich75@eurich75-VirtualBox:~/project$ echo 'I can read the file' > noread/document.txt
+eurich75@eurich75-VirtualBox:~/project$ chmod -r noread
+eurich75@eurich75-VirtualBox:~/project$ ls -l noread
+ls: невозможно открыть каталог 'noread': Отказано в доступе
+eurich75@eurich75-VirtualBox:~/project$ cat noread/document.txt
+I can read the file

@@ -1,0 +1,87 @@
+4. Создать пользователя, обладающего возможностью выполнять действия от
+имени суперпользователя.
+
+eurich75@eurich75-VirtualBox:~$ sudo useradd -s /bin/bash -m user3
+eurich75@eurich75-VirtualBox:~$ sudo usermod -aG sudo user3
+eurich75@eurich75-VirtualBox:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,eurich75
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:eurich75
+floppy:x:25:
+tape:x:26:
+sudo:x:27:eurich75,user2,user3
+audio:x:29:pulse
+dip:x:30:eurich75
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:eurich75
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:eurich75
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+lxd:x:131:eurich75
+eurich75:x:1000:
+sambashare:x:132:eurich75
+systemd-coredump:x:999:
+vboxsf:x:998:
+user1:x:1001:
+team1:x:1003:
+team2:x:1004:
+user2:x:1002:
+user3:x:1005:
+eurich75@eurich75-VirtualBox:~$ sudoedit /etc/sudoers
+sudo ALL=(ALL) NOPASSWD:ALL
