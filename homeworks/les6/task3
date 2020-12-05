@@ -1,0 +1,52 @@
+3. * Использовать команду AWK на вывод длинного списка каталога, чтобы
+отобразить только права доступа к файлам. Затем отправить в конвейере
+этот вывод на sort и uniq, чтобы отфильтровать все повторяющиеся строки.
+
+eurich75@eurich75-VirtualBox:~$ ls -l
+итого 928
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2010
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2011
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2012
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2013
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2014
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2015
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2016
+drwxrwxr-x 14 eurich75 eurich75    4096 дек  5 18:40  2017
+-rw-rw-r--  1 eurich75 eurich75  391876 ноя 27 19:45  cat.log
+-rw-rw-r--  1 eurich75 eurich75       0 дек  2 11:07  doc1.txt
+-rw-------  1 eurich75 eurich75       0 дек  2 11:07  doc2.txt
+-rw-rw-r--  1 eurich75 eurich75   22764 ноя 28 18:41  errors.log
+-rw-rw-r--  1 eurich75 eurich75     403 дек  2 10:04  eu_rca.pub
+-rw-rw-r--  1 eurich75 eurich75      11 дек  2 10:51  file2_new
+lrwxrwxrwx  1 eurich75 eurich75       5 дек  2 10:52  file3_new -> file1
+-rw-rw-r--  1 eurich75 eurich75  397567 ноя 27 19:52  full.log
+-rw-rw-r--  1 eurich75 eurich75      13 дек  5 18:28  input.txt
+drwxrwxr-x  2 eurich75 team1       4096 ноя 21 17:52  lesson3
+drwxrwxr-x  2 eurich75 eurich75    4096 ноя 21 17:54  lesson3_copy
+-rw-rw-r--  1 eurich75 eurich75     265 ноя 27 20:02  ls.txt
+-rw-rw-r--  1 eurich75 eurich75    1587 ноя 21 18:16 'nano file1.txt'
+-rw-rw-r--  1 eurich75 eurich75      13 дек  5 18:28  output.txt
+drwxrwsr-x  4 eurich75 developer   4096 дек  2 16:36  project
+-rwxrwxr-x  1 eurich75 eurich75      58 дек  5 18:25  task1.sh
+drwxrwxr-x  2 eurich75 eurich75    4096 дек  2 11:05  task2
+-rw-rw-r--  1 eurich75 eurich75      13 ноя 28 18:09  testfile.txt
+-rw-rw-r--  1 user1    team1         26 ноя 19 18:40  text2.txt
+-rw-rw-r--  1 eurich75 eurich75      14 ноя 28 19:24  text.txt
+-rw-rw-r--  1 eurich75 eurich75    1720 ноя 21 18:05 'vim file1.txt'
+-rwxrwxr-x  1 eurich75 eurich75     234 дек  5 18:37  year.sh
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Видео
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Документы
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Загрузки
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 18:47  Изображения
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Музыка
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Общедоступные
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58 'Рабочий стол'
+drwxr-xr-x  2 eurich75 eurich75    4096 ноя 17 13:58  Шаблоны
+eurich75@eurich75-VirtualBox:~$ ls -l | grep -v '^итогоl' | awk '{print $1} '| sort | uniq
+drwxrwsr-x
+drwxrwxr-x
+drwxr-xr-x
+lrwxrwxrwx
+-rw-------
+-rw-rw-r--
+-rwxrwxr-x

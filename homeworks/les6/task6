@@ -1,0 +1,42 @@
+6. * Написать скрипт, делающий архивную копию каталога etc, и прописать
+задание в crontab.
+
+eurich75@eurich75-VirtualBox:~$ cat > backup.sh
+#!/bin/bash
+tar -czf /home/eurich75/etc_arhived.tar.gz /etc
+eurich75@eurich75-VirtualBox:~$ chmod +x backup.sh
+eurich75@eurich75-VirtualBox:~$ eurich75@eurich75-VirtualBox:~$ ls
+ 2010   2015        doc1.txt     file3_new      ls.txt            task1.sh      'vim file1.txt'   Изображения
+ 2011   2016        doc2.txt     full.log      'nano file1.txt'   task2          year.sh          Музыка
+ 2012   2017        errors.log   input.txt      output.txt        testfile.txt   Видео            Общедоступные
+ 2013   backup.sh   eu_rca.pub   lesson3        project           text2.txt      Документы       'Рабочий стол'
+ 2014   cat.log     file2_new    lesson3_copy   reboot.sh         text.txt       Загрузки         Шаблоны
+eurich75@eurich75-VirtualBox:~$ backup.sh
+
+Команда «backup.sh» не найдена, но может быть установлена с помощью:
+
+sudo apt install tar-scripts
+
+eurich75@eurich75-VirtualBox:~$ sudo apt install tar-scripts
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Следующий пакет устанавливался автоматически и больше не требуется:
+  libfprint-2-tod1
+Для его удаления используйте «sudo apt autoremove».
+Следующие НОВЫЕ пакеты будут установлены:
+  tar-scripts
+Обновлено 0 пакетов, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 31 пакетов не обновлено.
+Необходимо скачать 9 228 B архивов.
+После данной операции объём занятого дискового пространства возрастёт на 49,2 kB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal/universe amd64 tar-scripts amd64 1.30+dfsg-7 [9 228 B]
+Получено 9 228 B за 1с (13,5 kB/s)
+Выбор ранее не выбранного пакета tar-scripts.
+(Чтение базы данных … на данный момент установлено 193877 файлов и каталогов.)
+Подготовка к распаковке …/tar-scripts_1.30+dfsg-7_amd64.deb …
+Распаковывается tar-scripts (1.30+dfsg-7) …
+Настраивается пакет tar-scripts (1.30+dfsg-7) …
+eurich75@eurich75-VirtualBox:~$ crontab -e
+45 18 * * * /hno crontab for eurich75 - using an empty one
+crontab: installing new crontabcrontab: installing new crontab
+eurich75@eurich75-VirtualBox:~$ backup.sh
