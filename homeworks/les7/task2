@@ -1,0 +1,5 @@
+2. Установить пакет на свой выбор, используя snap.
+
+eurich75@eurich75-VirtualBox:/etc/apt$ cd ~
+eurich75@eurich75-VirtualBox:~$ sudo snap install p7zip-desktop
+p7zip-desktop 16.02.2 от Ermesto Castellotti (ernytech) установлен

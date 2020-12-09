@@ -1,0 +1,108 @@
+1. Подключить репозиторий с nginx любым удобным способом, установить
+nginx и потом удалить nginx, используя утилиту dpkg.
+
+eurich75@eurich75-VirtualBox:~$ cd /etc/apt
+eurich75@eurich75-VirtualBox:/etc/apt$ ls
+apt.conf.d  auth.conf.d  preferences.d  sources.list  sources.list.d  trusted.gpg.d
+eurich75@eurich75-VirtualBox:/etc/apt$ eurich75@eurich75-VirtualBox:/etc/apt$ sudo nano source.list
+eurich75@eurich75-VirtualBox:/etc/apt$ eurich75@eurich75-VirtualBox:/etc/apt$ curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+
+Команда «curl» не найдена, но может быть установлена с помощью:
+
+sudo apt install curl
+
+gpg: не найдено данных формата OpenPGP.
+eurich75@eurich75-VirtualBox:/etc/apt$ sudo apt install curl
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Следующий пакет устанавливался автоматически и больше не требуется:
+  libfprint-2-tod1
+Для его удаления используйте «sudo apt autoremove».
+Следующие НОВЫЕ пакеты будут установлены:
+  curl
+Обновлено 0 пакетов, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 32 пакетов не обновлено.
+Необходимо скачать 161 kB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 411 kB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 curl amd64 7.68.0-1ubuntu2.2 [161 kB]
+Выбор ранее не выбранного пакета curl.
+(Чтение базы данных … на данный момент установлено 193884 файла и каталога.)
+Подготовка к распаковке …/curl_7.68.0-1ubuntu2.2_amd64.deb …
+Распаковывается curl (7.68.0-1ubuntu2.2) …
+Настраивается пакет curl (7.68.0-1ubuntu2.2) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+eurich75@eurich75-VirtualBox:/etc/apt$ curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+OK
+eurich75@eurich75-VirtualBox:/etc/apt$ sudo apt update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu focal InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu focal-updates InRelease
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu focal-backports InRelease
+Сущ:4 http://security.ubuntu.com/ubuntu focal-security InRelease
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Может быть обновлено 32 пакета. Запустите «apt list --upgradable» для их показа.
+eurich75@eurich75-VirtualBox:/etc/apt$ sudo apt install nginx
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Следующий пакет устанавливался автоматически и больше не требуется:
+  libfprint-2-tod1
+Для его удаления используйте «sudo apt autoremove».
+Будут установлены следующие дополнительные пакеты:
+  libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx-common
+  nginx-core
+Предлагаемые пакеты:
+  fcgiwrap nginx-doc
+Следующие НОВЫЕ пакеты будут установлены:
+  libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream nginx
+  nginx-common nginx-core
+Обновлено 0 пакетов, установлено 7 новых пакетов, для удаления отмечено 0 пакетов, и 32 пакетов не обновлено.
+Необходимо скачать 602 kB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 2 134 kB.
+Хотите продолжить? [Д/н] д
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx-common all 1.18.0-0ubuntu1 [37,3 kB]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-http-image-filter amd64 1.18.0-0ubuntu1 [14,3 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-http-xslt-filter amd64 1.18.0-0ubuntu1 [12,6 kB]
+Пол:4 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-mail amd64 1.18.0-0ubuntu1 [42,3 kB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 libnginx-mod-stream amd64 1.18.0-0ubuntu1 [66,9 kB]
+Пол:6 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx-core amd64 1.18.0-0ubuntu1 [425 kB]
+Пол:7 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 nginx all 1.18.0-0ubuntu1 [3 624 B]
+Получено 602 kB за 1с (733 kB/s)
+Предварительная настройка пакетов …
+Выбор ранее не выбранного пакета nginx-common.
+(Чтение базы данных … на данный момент установлен 193891 файл и каталог.)
+Подготовка к распаковке …/0-nginx-common_1.18.0-0ubuntu1_all.deb …
+Распаковывается nginx-common (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета libnginx-mod-http-image-filter.
+Подготовка к распаковке …/1-libnginx-mod-http-image-filter_1.18.0-0ubuntu1_amd64.deb …
+Распаковывается libnginx-mod-http-image-filter (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета libnginx-mod-http-xslt-filter.
+Подготовка к распаковке …/2-libnginx-mod-http-xslt-filter_1.18.0-0ubuntu1_amd64.deb …
+Распаковывается libnginx-mod-http-xslt-filter (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета libnginx-mod-mail.
+Подготовка к распаковке …/3-libnginx-mod-mail_1.18.0-0ubuntu1_amd64.deb …
+Распаковывается libnginx-mod-mail (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета libnginx-mod-stream.
+Подготовка к распаковке …/4-libnginx-mod-stream_1.18.0-0ubuntu1_amd64.deb …
+Распаковывается libnginx-mod-stream (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета nginx-core.
+Подготовка к распаковке …/5-nginx-core_1.18.0-0ubuntu1_amd64.deb …
+Распаковывается nginx-core (1.18.0-0ubuntu1) …
+Выбор ранее не выбранного пакета nginx.
+Подготовка к распаковке …/6-nginx_1.18.0-0ubuntu1_all.deb …
+Распаковывается nginx (1.18.0-0ubuntu1) …
+Настраивается пакет nginx-common (1.18.0-0ubuntu1) …
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Настраивается пакет libnginx-mod-http-xslt-filter (1.18.0-0ubuntu1) …
+Настраивается пакет libnginx-mod-mail (1.18.0-0ubuntu1) …
+Настраивается пакет libnginx-mod-http-image-filter (1.18.0-0ubuntu1) …
+Настраивается пакет libnginx-mod-stream (1.18.0-0ubuntu1) …
+Настраивается пакет nginx-core (1.18.0-0ubuntu1) …
+Настраивается пакет nginx (1.18.0-0ubuntu1) …
+Обрабатываются триггеры для systemd (245.4-4ubuntu3.3) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+Обрабатываются триггеры для ufw (0.36-6) …
+eurich75@eurich75-VirtualBox:/etc/apt$ sudo dpkg --purge nginx
+(Чтение базы данных … на данный момент установлено 193969 файлов и каталогов.)
+Удаляется nginx (1.18.0-0ubuntu1) …
