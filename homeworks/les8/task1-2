@@ -1,0 +1,320 @@
+1. Переустановить операционную систему, подключить репозиторий Docker.
+2. Запустить контейнер с Ubuntu.
+
+eurich75@eurich75-VirtualBox:~$ sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Уже установлен пакет ca-certificates самой новой версии (20201027ubuntu0.20.04.1).
+ca-certificates помечен как установленный вручную.
+Уже установлен пакет curl самой новой версии (7.68.0-1ubuntu2.2).
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  libfprint-2-tod1 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  nginx-common nginx-core
+Для их удаления используйте «sudo apt autoremove».
+Следующие НОВЫЕ пакеты будут установлены:
+  apt-transport-https gnupg-agent
+Следующие пакеты будут обновлены:
+  python3-software-properties software-properties-common
+  software-properties-gtk
+Обновлено 3 пакетов, установлено 2 новых пакетов, для удаления отмечено 0 пакетов, и 29 пакетов не обновлено.
+Необходимо скачать 1 708 B/107 kB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 206 kB.
+Игн:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.2ubuntu0.1
+Игн:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.2ubuntu0.1
+Игн:1 http://security.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.2ubuntu0.1
+Ошб:1 http://security.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.2ubuntu0.1
+  404  Not Found [IP: 213.180.204.183 80]
+E: Не удалось получить http://security.ubuntu.com/ubuntu/pool/universe/a/apt/apt-transport-https_2.0.2ubuntu0.1_all.deb  404  Not Found [IP: 213.180.204.183 80]
+E: Не удалось получить некоторые архивы; возможно, нужно запустить apt-get update или попытаться повторить запуск с ключом --fix-missing?
+eurich75@eurich75-VirtualBox:~$ apt-get update
+Чтение списков пакетов… Готово
+E: Не удалось открыть файл блокировки /var/lib/apt/lists/lock - open (13: Отказано в доступе)
+E: Невозможно заблокировать каталог /var/lib/apt/lists/
+W: Проблема при удалении файла /var/cache/apt/pkgcache.bin - RemoveCaches (13: Отказано в доступе)
+W: Проблема при удалении файла /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Отказано в доступе)
+eurich75@eurich75-VirtualBox:~$ sudo apt-get update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu focal InRelease
+Пол:2 http://ru.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Пол:3 http://security.ubuntu.com/ubuntu focal-security InRelease [109 kB]
+Пол:4 http://ru.archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [388 kB]
+Пол:6 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [682 kB]
+Пол:7 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [376 kB]
+Пол:8 http://security.ubuntu.com/ubuntu focal-security/main i386 Packages [162 kB]
+Пол:9 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [87,2 kB]
+Пол:10 http://security.ubuntu.com/ubuntu focal-security/main amd64 DEP-11 Metadata [24,3 kB]
+Пол:11 http://security.ubuntu.com/ubuntu focal-security/main DEP-11 48x48 Icons [11,0 kB]
+Пол:12 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [5 584 B]
+Пол:13 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [69,9 kB]
+Пол:14 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [11,4 kB]
+Пол:15 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [521 kB]
+Пол:16 http://security.ubuntu.com/ubuntu focal-security/universe i386 Packages [413 kB]
+Пол:17 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [68,6 kB]
+Пол:18 http://security.ubuntu.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [56,5 kB]
+Пол:19 http://ru.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [173 kB]
+Пол:20 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [236 kB]
+Пол:21 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [11,3 kB]
+Пол:22 http://ru.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [96,3 kB]
+Пол:23 http://ru.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [14,9 kB]
+Пол:24 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [522 kB]
+Пол:25 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [701 kB]
+Пол:26 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [138 kB]
+Пол:27 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [205 kB]
+Пол:28 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [13,4 kB]
+Пол:29 http://ru.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [2 468 B]
+Пол:30 http://ru.archive.ubuntu.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [1 764 B]
+Получено 5 316 kB за 5с (971 kB/s)
+Чтение списков пакетов… Готово
+eurich75@eurich75-VirtualBox:~$ sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Уже установлен пакет ca-certificates самой новой версии (20201027ubuntu0.20.04.1).
+ca-certificates помечен как установленный вручную.
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  libfprint-2-tod1 libnginx-mod-http-image-filter
+  libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  nginx-common nginx-core
+Для их удаления используйте «sudo apt autoremove».
+Будут установлены следующие дополнительные пакеты:
+  libcurl4 python3-software-properties software-properties-gtk
+Следующие НОВЫЕ пакеты будут установлены:
+  apt-transport-https gnupg-agent
+Следующие пакеты будут обновлены:
+  curl libcurl4 python3-software-properties software-properties-common
+  software-properties-gtk
+Обновлено 5 пакетов, установлено 2 новых пакетов, для удаления отмечено 0 пакетов, и 42 пакетов не обновлено.
+Необходимо скачать 397 kB/502 kB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 207 kB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.2ubuntu0.2 [1 708 B]
+Пол:2 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 curl amd64 7.68.0-1ubuntu2.4 [161 kB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu focal-updates/main amd64 libcurl4 amd64 7.68.0-1ubuntu2.4 [234 kB]
+Получено 397 kB за 1с (448 kB/s)
+Выбор ранее не выбранного пакета apt-transport-https.
+(Чтение базы данных … на данный момент установлено 193966 файлов и каталогов.)
+Подготовка к распаковке …/0-apt-transport-https_2.0.2ubuntu0.2_all.deb …
+Распаковывается apt-transport-https (2.0.2ubuntu0.2) …
+Подготовка к распаковке …/1-curl_7.68.0-1ubuntu2.4_amd64.deb …
+Распаковывается curl (7.68.0-1ubuntu2.4) на замену (7.68.0-1ubuntu2.2) …
+Подготовка к распаковке …/2-libcurl4_7.68.0-1ubuntu2.4_amd64.deb …
+Распаковывается libcurl4:amd64 (7.68.0-1ubuntu2.4) на замену (7.68.0-1ubuntu2.2)
+ …
+Выбор ранее не выбранного пакета gnupg-agent.
+Подготовка к распаковке …/3-gnupg-agent_2.2.19-3ubuntu2_all.deb …
+Распаковывается gnupg-agent (2.2.19-3ubuntu2) …
+Подготовка к распаковке …/4-software-properties-common_0.98.9.3_all.deb …
+Распаковывается software-properties-common (0.98.9.3) на замену (0.98.9.2) …
+Подготовка к распаковке …/5-software-properties-gtk_0.98.9.3_all.deb …
+Распаковывается software-properties-gtk (0.98.9.3) на замену (0.98.9.2) …
+Подготовка к распаковке …/6-python3-software-properties_0.98.9.3_all.deb …
+Распаковывается python3-software-properties (0.98.9.3) на замену (0.98.9.2) …
+Настраивается пакет apt-transport-https (2.0.2ubuntu0.2) …
+Настраивается пакет python3-software-properties (0.98.9.3) …
+Настраивается пакет gnupg-agent (2.2.19-3ubuntu2) …
+Настраивается пакет libcurl4:amd64 (7.68.0-1ubuntu2.4) …
+Настраивается пакет curl (7.68.0-1ubuntu2.4) …
+Настраивается пакет software-properties-common (0.98.9.3) …
+Настраивается пакет software-properties-gtk (0.98.9.3) …
+Обрабатываются триггеры для dbus (1.12.16-2ubuntu2.1) …
+Обрабатываются триггеры для shared-mime-info (1.15-1) …
+Обрабатываются триггеры для desktop-file-utils (0.24-1ubuntu3) …
+Обрабатываются триггеры для mime-support (3.64ubuntu1) …
+Обрабатываются триггеры для hicolor-icon-theme (0.17-2) …
+Обрабатываются триггеры для gnome-menus (3.36.0-1ubuntu1) …
+Обрабатываются триггеры для libglib2.0-0:amd64 (2.64.3-1~ubuntu20.04.1) …
+Обрабатываются триггеры для libc-bin (2.31-0ubuntu9.1) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+eurich75@eurich75-VirtualBox:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+OK
+eurich75@eurich75-VirtualBox:~$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu focal InRelease
+Пол:2 http://security.ubuntu.com/ubuntu focal-security InRelease [109 kB]
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu focal-updates InRelease
+Сущ:4 http://ru.archive.ubuntu.com/ubuntu focal-backports InRelease
+Пол:5 https://download.docker.com/linux/ubuntu focal InRelease [36,2 kB]
+Пол:6 http://security.ubuntu.com/ubuntu focal-security/main amd64 DEP-11 Metadata [24,3 kB]
+Пол:7 https://download.docker.com/linux/ubuntu focal/stable amd64 Packages [5 156 B]
+Пол:8 http://security.ubuntu.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [56,6 kB]
+Получено 231 kB за 2с (135 kB/s)
+Чтение списков пакетов… Готово
+eurich75@eurich75-VirtualBox:~$ sudo apt update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu focal InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu focal-updates InRelease
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu focal-backports InRelease
+Сущ:4 http://security.ubuntu.com/ubuntu focal-security InRelease
+Сущ:5 https://download.docker.com/linux/ubuntu focal InRelease
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Может быть обновлено 42 пакета. Запустите «apt list --upgradable» для их показа.
+eurich75@eurich75-VirtualBox:~$ sudo apt install docker-ce -y
+Чтение списков пакетов… Готово
+Построение дерева зависимостей
+Чтение информации о состоянии… Готово
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  libfprint-2-tod1 libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  nginx-common nginx-core
+Для их удаления используйте «sudo apt autoremove».
+Будут установлены следующие дополнительные пакеты:
+  containerd.io docker-ce-cli docker-ce-rootless-extras git git-man liberror-perl pigz slirp4netns
+Предлагаемые пакеты:
+  aufs-tools cgroupfs-mount | cgroup-lite git-daemon-run | git-daemon-sysvinit git-doc git-el git-email git-gui gitk
+  gitweb git-cvs git-mediawiki git-svn
+Следующие НОВЫЕ пакеты будут установлены:
+  containerd.io docker-ce docker-ce-cli docker-ce-rootless-extras git git-man liberror-perl pigz slirp4netns
+Обновлено 0 пакетов, установлено 9 новых пакетов, для удаления отмечено 0 пакетов, и 42 пакетов не обновлено.
+Необходимо скачать 106 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 484 MB.
+Пол:1 http://ru.archive.ubuntu.com/ubuntu focal/universe amd64 pigz amd64 2.4-1 [57,4 kB]
+Пол:2 https://download.docker.com/linux/ubuntu focal/stable amd64 containerd.io amd64 1.4.3-1 [28,1 MB]
+Пол:3 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 liberror-perl all 0.17029-1 [26,5 kB]
+Пол:4 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 git-man all 1:2.25.1-1ubuntu3 [884 kB]
+Пол:5 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 git amd64 1:2.25.1-1ubuntu3 [4 554 kB]
+Пол:6 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce-cli amd64 5:20.10.0~3-0~ubuntu-focal [39,1 MB]
+Пол:7 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce amd64 5:20.10.0~3-0~ubuntu-focal [24,8 MB]
+Пол:8 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce-rootless-extras amd64 5:20.10.0~3-0~ubuntu-focal [8 905 kB]
+Пол:9 http://ru.archive.ubuntu.com/ubuntu focal/universe amd64 slirp4netns amd64 0.4.3-1 [74,3 kB]
+Получено 106 MB за 51с (2 072 kB/s)
+Выбор ранее не выбранного пакета pigz.
+(Чтение базы данных … на данный момент установлено 193974 файла и каталога.)
+Подготовка к распаковке …/0-pigz_2.4-1_amd64.deb …
+Распаковывается pigz (2.4-1) …
+Выбор ранее не выбранного пакета containerd.io.
+Подготовка к распаковке …/1-containerd.io_1.4.3-1_amd64.deb …
+Распаковывается containerd.io (1.4.3-1) …
+Выбор ранее не выбранного пакета docker-ce-cli.
+Подготовка к распаковке …/2-docker-ce-cli_5%3a20.10.0~3-0~ubuntu-focal_amd64.deb …
+Распаковывается docker-ce-cli (5:20.10.0~3-0~ubuntu-focal) …
+Выбор ранее не выбранного пакета docker-ce.
+Подготовка к распаковке …/3-docker-ce_5%3a20.10.0~3-0~ubuntu-focal_amd64.deb …
+Распаковывается docker-ce (5:20.10.0~3-0~ubuntu-focal) …
+Выбор ранее не выбранного пакета docker-ce-rootless-extras.
+Подготовка к распаковке …/4-docker-ce-rootless-extras_5%3a20.10.0~3-0~ubuntu-focal_amd64.deb …
+Распаковывается docker-ce-rootless-extras (5:20.10.0~3-0~ubuntu-focal) …
+Выбор ранее не выбранного пакета liberror-perl.
+Подготовка к распаковке …/5-liberror-perl_0.17029-1_all.deb …
+Распаковывается liberror-perl (0.17029-1) …
+Выбор ранее не выбранного пакета git-man.
+Подготовка к распаковке …/6-git-man_1%3a2.25.1-1ubuntu3_all.deb …
+Распаковывается git-man (1:2.25.1-1ubuntu3) …
+Выбор ранее не выбранного пакета git.
+Подготовка к распаковке …/7-git_1%3a2.25.1-1ubuntu3_amd64.deb …
+Распаковывается git (1:2.25.1-1ubuntu3) …
+Выбор ранее не выбранного пакета slirp4netns.
+Подготовка к распаковке …/8-slirp4netns_0.4.3-1_amd64.deb …
+Распаковывается slirp4netns (0.4.3-1) …
+Настраивается пакет slirp4netns (0.4.3-1) …
+Настраивается пакет liberror-perl (0.17029-1) …
+Настраивается пакет containerd.io (1.4.3-1) …
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Настраивается пакет docker-ce-cli (5:20.10.0~3-0~ubuntu-focal) …
+Настраивается пакет pigz (2.4-1) …
+Настраивается пакет git-man (1:2.25.1-1ubuntu3) …
+Настраивается пакет docker-ce (5:20.10.0~3-0~ubuntu-focal) …
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+Настраивается пакет git (1:2.25.1-1ubuntu3) …
+Настраивается пакет docker-ce-rootless-extras (5:20.10.0~3-0~ubuntu-focal) …
+Обрабатываются триггеры для man-db (2.9.1-1) …
+Обрабатываются триггеры для systemd (245.4-4ubuntu3.3) …
+eurich75@eurich75-VirtualBox:~$ sudo systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-12-11 08:47:25 +08; 21min ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 5149 (dockerd)
+      Tasks: 8
+     Memory: 53.3M
+     CGroup: /system.slice/docker.service
+             └─5149 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+дек 11 08:47:21 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:21.426419376+08:00" level=warning msg="Your k>
+дек 11 08:47:21 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:21.426594542+08:00" level=warning msg="Your k>
+дек 11 08:47:21 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:21.426748927+08:00" level=warning msg="Your k>
+дек 11 08:47:21 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:21.427198259+08:00" level=info msg="Loading c>
+дек 11 08:47:22 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:22.487577641+08:00" level=info msg="Default b>
+дек 11 08:47:23 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:23.174170962+08:00" level=info msg="Loading c>
+дек 11 08:47:24 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:24.840309586+08:00" level=info msg="Docker da>
+дек 11 08:47:24 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:24.841319945+08:00" level=info msg="Daemon ha>
+дек 11 08:47:25 eurich75-VirtualBox systemd[1]: Started Docker Application Container Engine.
+дек 11 08:47:25 eurich75-VirtualBox dockerd[5149]: time="2020-12-11T08:47:25.314588563+08:00" level=info msg="API liste>
+
+[1]+  Остановлен    sudo systemctl status docker
+
+eurich75@eurich75-VirtualBox:~$ sudo docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+0e03bdcc26d7: Pull complete                                                                                             Digest: sha256:1a523af650137b8accdaed439c17d684df61ee4d74feac151b5b337bd29e7eec
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+eurich75@eurich75-VirtualBox:~$ sudo usermod -aG docker eurich75
+eurich75@eurich75-VirtualBox:~$ su eurich75
+Пароль:
+
+eurich75@eurich75-VirtualBox:~$ docker search ubuntu
+NAME                                                      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   11601     [OK]
+dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   480                  [OK]
+websphere-liberty                                         WebSphere Liberty multi-architecture images …   264       [OK]
+rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   250                  [OK]
+consol/ubuntu-xfce-vnc                                    Ubuntu container with "headless" VNC session…   228                  [OK]
+ubuntu-upstart                                            Upstart is an event-based replacement for th…   109       [OK]
+neurodebian                                               NeuroDebian provides neuroscience research s…   76        [OK]
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mysql-5      ubuntu-16-nginx-php-phpmyadmin-mysql-5          50                   [OK]
+ubuntu-debootstrap                                        debootstrap --variant=minbase --components=m…   44        [OK]
+open-liberty                                              Open Liberty multi-architecture images based…   39        [OK]
+nuagebec/ubuntu                                           Simple always updated Ubuntu docker images w…   24                   [OK]
+i386/ubuntu                                               Ubuntu is a Debian-based Linux operating sys…   24
+1and1internet/ubuntu-16-apache-php-5.6                    ubuntu-16-apache-php-5.6                        14                   [OK]
+1and1internet/ubuntu-16-apache-php-7.0                    ubuntu-16-apache-php-7.0                        13                   [OK]
+1and1internet/ubuntu-16-nginx-php-phpmyadmin-mariadb-10   ubuntu-16-nginx-php-phpmyadmin-mariadb-10       11                   [OK]
+1and1internet/ubuntu-16-nginx-php-5.6-wordpress-4         ubuntu-16-nginx-php-5.6-wordpress-4             7                    [OK]
+1and1internet/ubuntu-16-apache-php-7.1                    ubuntu-16-apache-php-7.1                        6                    [OK]
+pivotaldata/ubuntu                                        A quick freshening-up of the base Ubuntu doc…   4
+1and1internet/ubuntu-16-nginx-php-7.0                     ubuntu-16-nginx-php-7.0                         4                    [OK]
+pivotaldata/ubuntu16.04-build                             Ubuntu 16.04 image for GPDB compilation         2
+smartentry/ubuntu                                         ubuntu with smartentry                          1                    [OK]
+1and1internet/ubuntu-16-php-7.1                           ubuntu-16-php-7.1                               1                    [OK]
+pivotaldata/ubuntu-gpdb-dev                               Ubuntu images for GPDB development              1
+1and1internet/ubuntu-16-sshd                              ubuntu-16-sshd                                  1                    [OK]
+pivotaldata/ubuntu16.04-test                              Ubuntu 16.04 image for GPDB testing             0
+
+eurich75@eurich75-VirtualBox:~/lesson8$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+da7391352a9b: Pull complete                                                                                             14428a6d4bcd: Pull complete                                                                                             2c2d948710f2: Pull complete                                                                                             Digest: sha256:c95a8e48bf88e9849f3e0f723d9f49fa12c5a00cfc6e60d2bc99d87555295e4c
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+eurich75@eurich75-VirtualBox:~/lesson8$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+nginx         latest    7baf28ea91eb   31 hours ago    133MB
+ubuntu        latest    f643c72bc252   2 weeks ago     72.9MB
+hello-world   latest    bf756fb1ae65   11 months ago   13.3kB
+
+eurich75@eurich75-VirtualBox:~/lesson8$ docker run -it ubuntu
+root@0b8e4874a1f6:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
